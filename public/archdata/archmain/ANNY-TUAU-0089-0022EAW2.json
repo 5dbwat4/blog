@@ -1,0 +1,11 @@
+{
+    "title":"外语通的人性化处理",
+    "timestamp":1588429353000,
+    "lastModified":1588429353000,
+    "dateCreate":"2020-05-02 22:22:33",
+    "datePublished":"22:32:57",
+    "datetime":"2020-05-02T22:22:33+08:00",
+    "date":"2020-05-02",
+    "body":"        <h1 id=\"waiyutong-hommization\"><a href=\"#waiyutong-hommization\" class=\"headerlink\" title=\"waiyutong-hommization\"></a>waiyutong-hommization</h1><p><a href=\"https://www.jsdelivr.com/package/npm/waiyutong-hommization\" target=\"_blank\" rel=\"noopener\"><img src=\"https://data.jsdelivr.com/v1/package/npm/waiyutong-hommization/badge?style=rounded\" alt=\"\"></a><br><a href=\"https://npmjs.org/package/waiyutong-hommization\" target=\"_blank\" rel=\"noopener\"><img src=\"http://img.shields.io/npm/v/waiyutong-hommization.svg?style=flat\" alt=\"\"></a><br><a href=\"https://npmcharts.com/compare/waiyutong-hommization?minimal=true\" target=\"_blank\" rel=\"noopener\"><img src=\"http://img.shields.io/npm/dm/waiyutong-hommization.svg?style=flat\" alt=\"\"></a><br><a href=\"https://github.com/Zheng-jiabao/waiyutong-hommization/blob/HEAD/LICENSE\" target=\"_blank\" rel=\"noopener\"><img src=\"http://img.shields.io/badge/license-MIT-blue.svg?style=flat\" alt=\"\"></a></p>    <h1 id=\"外语通的人性化处理\"><a href=\"#外语通的人性化处理\" class=\"headerlink\" title=\"外语通的人性化处理\"></a>外语通的人性化处理</h1><p>是的，自从把智学网狠狠的搞了一通后，我又将手伸向了外语通</p>    <h2 id=\"使用方法\"><a href=\"#使用方法\" class=\"headerlink\" title=\"使用方法\"></a>使用方法</h2><p>同样的，用插件<code>urlredirector</code>，将<code>https://public.waiyutong.org/js/practice.js.*</code>重定向到<code>https://cdn.jsdelivr.net/npm/waiyutong-hommization@latest/index.min.js</code></p>    <h2 id=\"news\"><a href=\"#news\" class=\"headerlink\" title=\"news\"></a>news</h2><h3 id=\"v1-0-1\"><a href=\"#v1-0-1\" class=\"headerlink\" title=\"v1.0.1\"></a>v1.0.1</h3><p>直接提交直接满分，gui中调通过用时</p>    ",
+    "entityName":"waiyutong-hommization"
+}
