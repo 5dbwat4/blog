@@ -77,8 +77,8 @@
 <script setup>
 import { ref } from "@vue/reactivity"
 
-const tagCount=ref("")
-const archCount=ref("")
+const tagCount=ref("?")
+const archCount=ref("?")
 
 ;(async()=>{
   await (await import("./makeSureArchMeta")).makeSureArchMeta()

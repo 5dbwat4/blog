@@ -2,13 +2,13 @@
     <article itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
 
-      <div class="post-meta">
+      <!-- <div class="post-meta">
         <time itemprop="dateCreated"
               datetime="2020-05-02T22:22:33+08:00"
               content="2020-05-02">
           05-02
         </time>
-      </div>
+      </div> -->
 
       <h3 class="post-title">
           <router-link class="post-title-link" :to="'/arch/'+$attrs.entityName" itemprop="url">

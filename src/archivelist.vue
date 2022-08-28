@@ -1,23 +1,28 @@
 <template>
   <div class="posts-collapse">
       <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 13 篇日志。 继续努力。</span>
+        <span class="collection-header">嗯..! 目前共计 {{archCount}} 篇日志。 继续努力。</span>
       </div>
 
-<arch-list :arch="archMetaList"/>
+<component :is="ArchlistComp"/>
 
   </div>
 </template>
 
 <script setup>
-import { defineAsyncComponent, onMounted, ref } from "@vue/runtime-core";
+import { defineAsyncComponent, h, onMounted, ref } from "@vue/runtime-core";
 import { makeSureArchMeta } from "./components/makeSureArchMeta";
 
 const archList=defineAsyncComponent(()=>import("./components/archList.vue"))
-const archMetaList=ref(false)
+const ArchlistComp=ref(h("p",{},{default:()=>"Loading."}))
+const archCount=ref("?")
 
 makeSureArchMeta().then(()=>{
-    archMetaList.value=window.ArchMeta
+  ArchlistComp.value=h(
+    archList,{arch:window.ArchMeta.data}
+  )
+  archCount.value=""+window.ArchMeta.data.length
+
 })
 
 </script>
