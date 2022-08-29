@@ -18,6 +18,7 @@ first_load()
         {path:"/arch/:entityName", component: ()=>import("./archive.vue"),props:{parser:"entityName"}},
         {path:"/tags", component: ()=>import("./tags.vue")},
         {path:"/tags/:tagname", component: ()=>import("./archivelist.vue"),props:{filtertype:"tagname"}},
+        {path:"/404", component: ()=>import("./404.vue"),props:{filtertype:"tagname"}},
 
     ]
     const router = VueRouter.createRouter({
