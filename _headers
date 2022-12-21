@@ -1,0 +1,28 @@
+
+/arch/*
+  Cache-Control: no-cache
+
+/about/*
+  Cache-Control: no-cache
+
+/tags/*
+  Cache-Control: no-cache
+
+/page/*
+  Cache-Control: no-cache
+
+/archives/*
+  Cache-Control: no-cache
+
+/--/chear-site-data
+  Clear-Site-Data: "cache"
+  Cache-Control: no-cache
+
+/index.html
+  Cache-Control: no-cache
+
+/js/hot/*
+  Cache-Control: no-cache
+
+/css/hot/*
+  Cache-Control: no-cache
