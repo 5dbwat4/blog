@@ -22,27 +22,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.5dbwat4.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="本文发布于2023&#x2F;12&#x2F;23，此时，组卷网新增了一个离谱的前后端分离功能。 当你切换页码，以及调节筛选条件时，会有一个&#x2F;list请求被发出，返回内容是json格式但是返回内容的主体是一个HTML字符串。 我的评价是不如使用pjax 但是这会使原先依赖于每一次页面运行时加载而实现的功能无法使用。为了解决这一问题可以绑定一个replaceState事件。 当然更好的情况是直接in">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://blog.5dbwat4.top/arch/hello-world.html">
+<meta property="og:title" content="提升组卷网的使用体验（四）：绑定replaceSatae事件">
+<meta property="og:url" content="https://blog.5dbwat4.top/arch/enhance-zujuan-experience-4.html">
 <meta property="og:site_name" content="5dbwat4&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="本文发布于2023&#x2F;12&#x2F;23，此时，组卷网新增了一个离谱的前后端分离功能。 当你切换页码，以及调节筛选条件时，会有一个&#x2F;list请求被发出，返回内容是json格式但是返回内容的主体是一个HTML字符串。 我的评价是不如使用pjax 但是这会使原先依赖于每一次页面运行时加载而实现的功能无法使用。为了解决这一问题可以绑定一个replaceState事件。 当然更好的情况是直接in">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-12-13T15:32:46.750Z">
-<meta property="article:modified_time" content="2022-08-08T14:42:18.000Z">
+<meta property="article:published_time" content="2023-12-23T09:29:47.000Z">
+<meta property="article:modified_time" content="2023-12-25T04:16:07.750Z">
 <meta property="article:author" content="5dbwat4">
+<meta property="article:tag" content="Proj">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://blog.5dbwat4.top/arch/hello-world.html">
+<link rel="canonical" href="https://blog.5dbwat4.top/arch/enhance-zujuan-experience-4.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.5dbwat4.top/arch/hello-world.html","path":"arch/hello-world.html","title":"Hello World"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.5dbwat4.top/arch/enhance-zujuan-experience-4.html","path":"arch/enhance-zujuan-experience-4.html","title":"提升组卷网的使用体验（四）：绑定replaceSatae事件"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Hello World | 5dbwat4's Blog</title>
+<title>提升组卷网的使用体验（四）：绑定replaceSatae事件 | 5dbwat4's Blog</title>
   
 
 
@@ -104,7 +105,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -117,7 +118,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -171,7 +171,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.5dbwat4.top/arch/hello-world.html">
+    <link itemprop="mainEntityOfPage" href="https://blog.5dbwat4.top/arch/enhance-zujuan-experience-4.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -184,12 +184,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Hello World | 5dbwat4's Blog">
+      <meta itemprop="name" content="提升组卷网的使用体验（四）：绑定replaceSatae事件 | 5dbwat4's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          提升组卷网的使用体验（四）：绑定replaceSatae事件
         </h1>
 
         <div class="post-meta-container">
@@ -200,14 +200,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2023-12-13 23:32:46" itemprop="dateCreated datePublished" datetime="2023-12-13T23:32:46+08:00">2023-12-13</time>
+      <time title="创建时间：2023-12-23 17:29:47" itemprop="dateCreated datePublished" datetime="2023-12-23T17:29:47+08:00">2023-12-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-08-08 22:42:18" itemprop="dateModified" datetime="2022-08-08T22:42:18+08:00">2022-08-08</time>
+      <time title="修改时间：2023-12-25 12:16:07" itemprop="dateModified" datetime="2023-12-25T12:16:07+08:00">2023-12-25</time>
     </span>
 
   
@@ -227,20 +227,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+        <p>本文发布于2023&#x2F;12&#x2F;23，此时，组卷网新增了一个离谱的前后端分离功能。</p>
+<p>当你切换页码，以及调节筛选条件时，会有一个<code>/list</code>请求被发出，返回内容是json格式但是返回内容的主体是一个HTML字符串。</p>
+<p>我的评价是不如使用pjax</p>
+<p>但是这会使原先依赖于每一次页面运行时加载而实现的功能无法使用。为了解决这一问题可以绑定一个replaceState事件。</p>
+<p>当然更好的情况是直接inject组卷网的js文件，在渲染功能的代码运行结束后在运行相关的函数但是这个过程比较复杂所以选择退而求其次（其实是因为我水平太差）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bindEventListener = <span class="keyword">function</span>(<span class="params">type</span>) &#123;</span><br><span class="line">   <span class="keyword">const</span> historyEvent = history[type];</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">       <span class="keyword">const</span> newEvent = historyEvent.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">      <span class="keyword">const</span> e = <span class="keyword">new</span> <span class="title class_">Event</span>(type);</span><br><span class="line">       e.<span class="property">arguments</span> = <span class="variable language_">arguments</span>;</span><br><span class="line">       <span class="variable language_">window</span>.<span class="title function_">dispatchEvent</span>(e);</span><br><span class="line">       <span class="keyword">return</span> newEvent;</span><br><span class="line">   &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">history.<span class="property">pushState</span> = <span class="title function_">bindEventListener</span>(<span class="string">&#x27;pushState&#x27;</span>);</span><br><span class="line">history.<span class="property">replaceState</span> = <span class="title function_">bindEventListener</span>(<span class="string">&#x27;replaceState&#x27;</span>);</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;replaceState&#x27;</span>, <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;THEY DID IT AGAIN! replaceState&#x27;</span>);</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="title function_">exec00</span>()</span><br><span class="line">    &#125;,<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;pushState&#x27;</span>, <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;THEY DID IT AGAIN! pushState&#x27;</span>);</span><br><span class="line">    <span class="title function_">exec00</span>()</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -248,19 +240,19 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Proj/" rel="tag"><i class="fa fa-tag"></i> Proj</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/arch/dhr-religion.html" rel="prev" title="丁浩然教">
-                  <i class="fa fa-chevron-left"></i> 丁浩然教
+                <a href="/arch/enhance-zujuan-experience-3.html" rel="prev" title="提升组卷网的使用体验（三）：提升试题清晰度">
+                  <i class="fa fa-chevron-left"></i> 提升组卷网的使用体验（三）：提升试题清晰度
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/arch/DHR-IQ-time-1.html" rel="next" title="丁浩然的IQ时刻（一）">
-                  丁浩然的IQ时刻（一） <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
