@@ -22,15 +22,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.5dbwat4.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="本文发布于2023&#x2F;12&#x2F;23，此时，组卷网新增了一个离谱的前后端分离功能。 当你切换页码，以及调节筛选条件时，会有一个&#x2F;list请求被发出，返回内容是json格式但是返回内容的主体是一个HTML字符串。 我的评价是不如使用pjax 但是这会使原先依赖于每一次页面运行时加载而实现的功能无法使用。为了解决这一问题可以绑定一个replaceState事件。 当然更好的情况是直接in">
+    <meta name="description" content="本文发布于2023&#x2F;12&#x2F;23，此时，组卷网新增了一个离谱的前后端分离功能。 当你切换页码，以及调节筛选条件时，会有一个&#x2F;list请求被发出，返回内容是json格式但是返回内容的主体是一个HTML字符串。 我的评价是不如使用pjax 但是这会使原先依赖于每一次页面运行时加载而实现的功能无法使用。为了解决这一问题可以绑定一个replaceState事件。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="提升组卷网的使用体验（四）：绑定replaceSatae事件">
 <meta property="og:url" content="https://blog.5dbwat4.top/arch/enhance-zujuan-experience-4.html">
 <meta property="og:site_name" content="5dbwat4&#39;s Blog">
-<meta property="og:description" content="本文发布于2023&#x2F;12&#x2F;23，此时，组卷网新增了一个离谱的前后端分离功能。 当你切换页码，以及调节筛选条件时，会有一个&#x2F;list请求被发出，返回内容是json格式但是返回内容的主体是一个HTML字符串。 我的评价是不如使用pjax 但是这会使原先依赖于每一次页面运行时加载而实现的功能无法使用。为了解决这一问题可以绑定一个replaceState事件。 当然更好的情况是直接in">
+<meta property="og:description" content="本文发布于2023&#x2F;12&#x2F;23，此时，组卷网新增了一个离谱的前后端分离功能。 当你切换页码，以及调节筛选条件时，会有一个&#x2F;list请求被发出，返回内容是json格式但是返回内容的主体是一个HTML字符串。 我的评价是不如使用pjax 但是这会使原先依赖于每一次页面运行时加载而实现的功能无法使用。为了解决这一问题可以绑定一个replaceState事件。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-12-23T09:29:47.000Z">
-<meta property="article:modified_time" content="2023-12-25T04:16:07.750Z">
+<meta property="article:modified_time" content="2024-04-03T16:54:15.434Z">
 <meta property="article:author" content="5dbwat4">
 <meta property="article:tag" content="Proj">
 <meta name="twitter:card" content="summary">
@@ -207,7 +207,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-12-25 12:16:07" itemprop="dateModified" datetime="2023-12-25T12:16:07+08:00">2023-12-25</time>
+      <time title="修改时间：2024-04-04 00:54:15" itemprop="dateModified" datetime="2024-04-04T00:54:15+08:00">2024-04-04</time>
     </span>
 
   
@@ -231,6 +231,8 @@
 <p>当你切换页码，以及调节筛选条件时，会有一个<code>/list</code>请求被发出，返回内容是json格式但是返回内容的主体是一个HTML字符串。</p>
 <p>我的评价是不如使用pjax</p>
 <p>但是这会使原先依赖于每一次页面运行时加载而实现的功能无法使用。为了解决这一问题可以绑定一个replaceState事件。</p>
+<span id="more"></span>
+
 <p>当然更好的情况是直接inject组卷网的js文件，在渲染功能的代码运行结束后在运行相关的函数但是这个过程比较复杂所以选择退而求其次（其实是因为我水平太差）</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bindEventListener = <span class="keyword">function</span>(<span class="params">type</span>) &#123;</span><br><span class="line">   <span class="keyword">const</span> historyEvent = history[type];</span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">       <span class="keyword">const</span> newEvent = historyEvent.<span class="title function_">apply</span>(<span class="variable language_">this</span>, <span class="variable language_">arguments</span>);</span><br><span class="line">      <span class="keyword">const</span> e = <span class="keyword">new</span> <span class="title class_">Event</span>(type);</span><br><span class="line">       e.<span class="property">arguments</span> = <span class="variable language_">arguments</span>;</span><br><span class="line">       <span class="variable language_">window</span>.<span class="title function_">dispatchEvent</span>(e);</span><br><span class="line">       <span class="keyword">return</span> newEvent;</span><br><span class="line">   &#125;;</span><br><span class="line">&#125;;</span><br><span class="line">history.<span class="property">pushState</span> = <span class="title function_">bindEventListener</span>(<span class="string">&#x27;pushState&#x27;</span>);</span><br><span class="line">history.<span class="property">replaceState</span> = <span class="title function_">bindEventListener</span>(<span class="string">&#x27;replaceState&#x27;</span>);</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;replaceState&#x27;</span>, <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;THEY DID IT AGAIN! replaceState&#x27;</span>);</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="title function_">exec00</span>()</span><br><span class="line">    &#125;,<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;pushState&#x27;</span>, <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;THEY DID IT AGAIN! pushState&#x27;</span>);</span><br><span class="line">    <span class="title function_">exec00</span>()</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
     </div>
@@ -275,7 +277,7 @@
 
 <div class="copyright">
   &copy; 2020 – 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
