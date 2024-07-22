@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-flash.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.5dbwat4.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="当我们想单机玩Minecraft时，如何启动Minecraft并不是一件难事，因为官方启动器以及各种HMCL之类的启动器会帮助我们完成诸如安装java、下载minecraft的jar文件、管理各种模组之类的工作。 同理，联机也不是什么难事。启动Minecraft后，我们可以轻松“向局域网开放”，然后内网穿透一下便可。 这就导致，必须有一个人先启动游戏，其他人才能联机。 我们现在希望每个玩家可以平等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无GUI启动Minecraft服务器的历程">
+<meta property="og:url" content="https://blog.5dbwat4.top/arch/start-a-minecraft-server-without-gui.html">
+<meta property="og:site_name" content="5dbwat4&#39;s Blog">
+<meta property="og:description" content="当我们想单机玩Minecraft时，如何启动Minecraft并不是一件难事，因为官方启动器以及各种HMCL之类的启动器会帮助我们完成诸如安装java、下载minecraft的jar文件、管理各种模组之类的工作。 同理，联机也不是什么难事。启动Minecraft后，我们可以轻松“向局域网开放”，然后内网穿透一下便可。 这就导致，必须有一个人先启动游戏，其他人才能联机。 我们现在希望每个玩家可以平等">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-07-06T07:19:18.000Z">
+<meta property="article:modified_time" content="2024-07-07T04:11:40.907Z">
+<meta property="article:author" content="5dbwat4">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://blog.5dbwat4.top/arch/start-a-minecraft-server-without-gui.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.5dbwat4.top/arch/start-a-minecraft-server-without-gui.html","path":"arch/start-a-minecraft-server-without-gui.html","title":"无GUI启动Minecraft服务器的历程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>无GUI启动Minecraft服务器的历程 | 5dbwat4's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+       <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+  <link rel="stylesheet" href="/assets/live2d/w.css"/>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">5dbwat4's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E9%94%AE%E5%BC%8F%E9%83%A8%E7%BD%B2"><span class="nav-number">1.</span> <span class="nav-text">一键式部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A2%E7%B4%A2%E8%AF%A5%E6%9C%8D%E5%8A%A1%E7%9A%84%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">探索该服务的文件结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E9%83%A8%E7%BD%B2"><span class="nav-number">2.</span> <span class="nav-text">从零开始部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-0-%E5%AE%89%E8%A3%85java"><span class="nav-number">2.1.</span> <span class="nav-text">Step 0 安装java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1-%E6%89%93%E5%9F%BA%E7%A1%80"><span class="nav-number">2.2.</span> <span class="nav-text">Step 1 打基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2-%E5%AE%89%E8%A3%85%E6%B8%B8%E6%88%8F%E6%96%87%E4%BB%B6"><span class="nav-number">2.3.</span> <span class="nav-text">Step 2 安装游戏文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-3-First-run"><span class="nav-number">2.4.</span> <span class="nav-text">Step 3 First run</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#wiki%E4%B8%AD%E6%B2%A1%E6%9C%89%E8%AF%B4%E6%B8%85%E6%A5%9A%E7%9A%84%E4%B8%9C%E8%A5%BF"><span class="nav-number">3.</span> <span class="nav-text">wiki中没有说清楚的东西</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E4%B8%8B%E8%BD%BD%E5%85%B6%E4%BB%96%E7%89%88%E6%9C%AC%EF%BC%8C%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="nav-number">3.1.</span> <span class="nav-text">我想下载其他版本，怎么办</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%80%9CFailed-to-bind-to-port-%E2%80%9D%E6%97%B6%EF%BC%8C%E6%80%8E%E4%B9%88%E5%8A%9E"><span class="nav-number">3.2.</span> <span class="nav-text">“Failed to bind to port!”时，怎么办</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nohup-%E5%85%B3%E9%97%ADworkbench%E6%97%B6%E4%B8%8D%E4%BC%9A%E2%80%9C%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B7%B2%E6%96%AD%E5%BC%80%E8%BF%9E%E6%8E%A5%E2%80%9D"><span class="nav-number">3.3.</span> <span class="nav-text">nohup: 关闭workbench时不会“服务器已断开连接”</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E8%A6%81%E5%AE%89%E8%A3%85forge%EF%BC%8C%E6%B7%BB%E5%8A%A0mods"><span class="nav-number">4.</span> <span class="nav-text">我要安装forge，添加mods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">5dbwat4</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/5dbwat4" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;5dbwat4" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:me@5dbwat4.top" title="E-Mail → mailto:me@5dbwat4.top" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.5dbwat4.top/arch/start-a-minecraft-server-without-gui.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="5dbwat4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="5dbwat4's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="无GUI启动Minecraft服务器的历程 | 5dbwat4's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          无GUI启动Minecraft服务器的历程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-07-06 15:19:18" itemprop="dateCreated datePublished" datetime="2024-07-06T15:19:18+08:00">2024-07-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-07-07 12:11:40" itemprop="dateModified" datetime="2024-07-07T12:11:40+08:00">2024-07-07</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>当我们想单机玩<a target="_blank" rel="noopener" href="https://minecraft.net/">Minecraft</a>时，如何启动Minecraft并不是一件难事，因为官方启动器以及各种HMCL之类的启动器会帮助我们完成诸如安装java、下载minecraft的jar文件、管理各种模组之类的工作。</p>
+<p>同理，联机也不是什么难事。启动Minecraft后，我们可以轻松“<strong>向局域网开放</strong>”，然后内网穿透一下便可。</p>
+<p>这就导致，必须有一个人先启动游戏，其他人才能联机。</p>
+<p>我们现在希望每个玩家可以平等地加入游戏，希望让游戏服务器持久化运行。当然，网上有专门做Minecraft服务器租用的平台。</p>
+<p>但是，我们希望把服务器放在阿里云上。</p>
+<h2 id="一键式部署"><a href="#一键式部署" class="headerlink" title="一键式部署"></a>一键式部署</h2><p><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/1454890">3分钟部署 我的世界（Minecraft） 联机服务-阿里云开发者社区 (aliyun.com)</a></p>
+<p>真的是一键部署，相当方便。问题是，启动服务器后发现配置游戏参数时忘了<code>online-mode=false</code>，改不了了，怎么办</p>
+<h3 id="探索该服务的文件结构"><a href="#探索该服务的文件结构" class="headerlink" title="探索该服务的文件结构"></a>探索该服务的文件结构</h3><p>远程连接到ecs。</p>
+<p><code>/opt/minecraft</code>目录下是游戏服务器&amp;存档文件。</p>
+<p><code>/opt/minecraft/instances/servival[or creative]/server.properties</code>就是配置文件，可以参照<a target="_blank" rel="noopener" href="https://minecraft.wiki/w/Server.properties">server.properties – Minecraft Wiki</a>修改。</p>
+<h2 id="从零开始部署"><a href="#从零开始部署" class="headerlink" title="从零开始部署"></a>从零开始部署</h2><p>创建ecs服务器，远程连接，假设你用的是linux系统。</p>
+<h3 id="Step-0-安装java"><a href="#Step-0-安装java" class="headerlink" title="Step 0 安装java"></a>Step 0 安装java</h3><p><a target="_blank" rel="noopener" href="https://zh.minecraft.wiki/w/Tutorial:%E6%9E%B6%E8%AE%BEJava%E7%89%88%E6%9C%8D%E5%8A%A1%E5%99%A8">教程:架设Java版服务器 - 中文 Minecraft Wiki</a></p>
+<p>这里说的很清楚。</p>
+<h3 id="Step-1-打基础"><a href="#Step-1-打基础" class="headerlink" title="Step 1 打基础"></a>Step 1 打基础</h3><p>决定你要把服务器放在哪里。假设这个位置是<code>/opt/minecraft</code>，那么你需要一路<code>mkdir</code>过来</p>
+<h3 id="Step-2-安装游戏文件"><a href="#Step-2-安装游戏文件" class="headerlink" title="Step 2 安装游戏文件"></a>Step 2 安装游戏文件</h3><p><a target="_blank" rel="noopener" href="https://www.minecraft.net/en-us/download/server">Minecraft Server Download | Minecraft</a></p>
+<p>官方文档，但只有1.21版本。</p>
+<p>如果你打开了文件管理，那么很容易被“上传”按钮吸引，决定本地下载再上传到ecs。</p>
+<p>不如直接<code>wget</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://piston-data.mojang.com/v1/objects/450698d1863ab5180c25d7c804ef0fe6369dd1ba/server.jar</span><br></pre></td></tr></table></figure>
+
+<p>右键复制链接可以得到上面jar文件的URL</p>
+<h3 id="Step-3-First-run"><a href="#Step-3-First-run" class="headerlink" title="Step 3 First run"></a>Step 3 First run</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -Xmx1024M -Xms1024M -jar server.jar nogui</span><br></pre></td></tr></table></figure>
+
+<p>记得修改<code>eula.txt</code></p>
+<h2 id="wiki中没有说清楚的东西"><a href="#wiki中没有说清楚的东西" class="headerlink" title="wiki中没有说清楚的东西"></a>wiki中没有说清楚的东西</h2><h3 id="我想下载其他版本，怎么办"><a href="#我想下载其他版本，怎么办" class="headerlink" title="我想下载其他版本，怎么办"></a>我想下载其他版本，怎么办</h3><p><a target="_blank" rel="noopener" href="https://piston-meta.mojang.com/mc/game/version_manifest.json">piston-meta.mojang.com&#x2F;mc&#x2F;game&#x2F;version_manifest.json</a></p>
+<p>这里有所有版本的manifest。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1.21&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;release&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://piston-meta.mojang.com/v1/packages/177e49d3233cb6eac42f0495c0a48e719870c2ae/1.21.json&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;time&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2024-06-13T08:32:38+00:00&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;releaseTime&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2024-06-13T08:24:03+00:00&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>访问url中的地址，找到<code>downloads.server.url</code>，<code>wget</code>这个url</p>
+<h3 id="“Failed-to-bind-to-port-”时，怎么办"><a href="#“Failed-to-bind-to-port-”时，怎么办" class="headerlink" title="“Failed to bind to port!”时，怎么办"></a>“Failed to bind to port!”时，怎么办</h3><p>具体的说，是发生这个情况时，怎么办：</p>
+<blockquote>
+<p>此类问题亦有可能是操作者疏忽导致服务端未关闭就再次开启了服务端，典型的错误操作有：Windows中直接双击了核心jar，Linux中使用守护进程运行Java等，导致服务端在后台运行而操作者未注意的情况。遇到此类问题可先检查占用该端口的进程，获取控制或将其结束，再启动服务端。</p>
+</blockquote>
+<p>先<code>lsof -i:25565</code>，找到进程PID，<code>kill</code>它</p>
+<h3 id="nohup-关闭workbench时不会“服务器已断开连接”"><a href="#nohup-关闭workbench时不会“服务器已断开连接”" class="headerlink" title="nohup: 关闭workbench时不会“服务器已断开连接”"></a>nohup: 关闭workbench时不会“服务器已断开连接”</h3><p>给所有命令前面加一个<code>nohup</code></p>
+<h2 id="我要安装forge，添加mods"><a href="#我要安装forge，添加mods" class="headerlink" title="我要安装forge，添加mods"></a>我要安装forge，添加mods</h2><p>去<a target="_blank" rel="noopener" href="https://files.minecraftforge.net/net/minecraftforge/forge/">Downloads for Minecraft Forge</a>找到你要安装的版本，同样的方法，<code>wget</code>到目录下。</p>
+<p>运行<code>java -jar forge-1.20.1-47.2.0-installer.jar nogui --installServer</code></p>
+<p>上面的文件名是你下载的forge文件的文件名</p>
+<p>完成后，在该目录下，会出现许多文件（夹），其中应该有<code>run.sh</code>,<code>mods</code></p>
+<p>可以仿照<a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv34839109/">Minecraft 1.20.1 Forge服务器保姆级搭建教程（Linux系统纯Shell管理，无mcsm面板） - 哔哩哔哩 (bilibili.com)</a>中的方法将<code>nogui</code>参数加到<code>run.sh</code>中，</p>
+<p>然后把你要安装的mods下载到<code>mods</code>文件夹中。</p>
+<p><em>NOTE:</em> 模组之间会有各种依赖，可以先在本地用启动器安装模组，看看总共有哪些依赖，然后再去<code>wget</code></p>
+<p>最后一步，<code>nohup ./run.sh</code></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/1454890">3分钟部署 我的世界（Minecraft） 联机服务-阿里云开发者社区 (aliyun.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://zh.minecraft.wiki/w/Tutorial:%E6%9E%B6%E8%AE%BEJava%E7%89%88%E6%9C%8D%E5%8A%A1%E5%99%A8">教程:架设Java版服务器 - 中文 Minecraft Wiki</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.minecraft.net/en-us/download/server">Minecraft Server Download | Minecraft</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv34839109/">Minecraft 1.20.1 Forge服务器保姆级搭建教程（Linux系统纯Shell管理，无mcsm面板） - 哔哩哔哩 (bilibili.com)</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/arch/me-and-my-Thost.html" rel="prev" title="我与thost">
+                  <i class="fa fa-chevron-left"></i> 我与thost
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/arch/express-commonly-used-code-snippets.html" rel="next" title="express.js常用代码块">
+                  express.js常用代码块 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+
+
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">5dbwat4</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+
+
+
+
+  <!--Live2D-->
+
+ <!-- <script src="/assets/live2d/l2dw.js"></script>
+  <script src="/assets/live2d/l2dw-wtip.js"></script>
+  <script src="/assets/live2d/controlCore.js"></script>-->
+
+</body>
+</html>
