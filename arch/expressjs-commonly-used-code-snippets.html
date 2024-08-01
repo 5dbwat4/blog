@@ -22,24 +22,24 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.5dbwat4.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Before all123456789101112131415161718192021const express &#x3D; require(&quot;express&quot;);const app &#x3D; express();const port &#x3D; 3000;const http &#x3D; require(&quot;http&quot;);const fs &#x3D; require(&quot;fs&quot;">
+    <meta name="description" content="通过复制粘贴实现一个基于express.js的后端">
 <meta property="og:type" content="article">
 <meta property="og:title" content="express.js常用代码块">
-<meta property="og:url" content="https://blog.5dbwat4.top/arch/express-commonly-used-code-snippets.html">
+<meta property="og:url" content="https://blog.5dbwat4.top/arch/expressjs-commonly-used-code-snippets.html">
 <meta property="og:site_name" content="5dbwat4&#39;s Blog">
-<meta property="og:description" content="Before all123456789101112131415161718192021const express &#x3D; require(&quot;express&quot;);const app &#x3D; express();const port &#x3D; 3000;const http &#x3D; require(&quot;http&quot;);const fs &#x3D; require(&quot;fs&quot;">
+<meta property="og:description" content="通过复制粘贴实现一个基于express.js的后端">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-09T01:40:26.000Z">
-<meta property="article:modified_time" content="2024-07-09T09:52:31.587Z">
+<meta property="article:modified_time" content="2024-08-01T06:50:49.612Z">
 <meta property="article:author" content="5dbwat4">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://blog.5dbwat4.top/arch/express-commonly-used-code-snippets.html">
+<link rel="canonical" href="https://blog.5dbwat4.top/arch/expressjs-commonly-used-code-snippets.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.5dbwat4.top/arch/express-commonly-used-code-snippets.html","path":"arch/express-commonly-used-code-snippets.html","title":"express.js常用代码块"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.5dbwat4.top/arch/expressjs-commonly-used-code-snippets.html","path":"arch/expressjs-commonly-used-code-snippets.html","title":"express.js常用代码块"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>express.js常用代码块 | 5dbwat4's Blog</title>
@@ -117,7 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Before-all"><span class="nav-number">1.</span> <span class="nav-text">Before all</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Create-a-static-server"><span class="nav-number">2.</span> <span class="nav-text">Create a static server</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Allow-large-Request"><span class="nav-number">3.</span> <span class="nav-text">Allow large Request</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Allow-CORS"><span class="nav-number">4.</span> <span class="nav-text">Allow CORS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Start-A-SQLite-instance-before-all"><span class="nav-number">5.</span> <span class="nav-text">Start A SQLite instance before all</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A-simple-login-backend"><span class="nav-number">6.</span> <span class="nav-text">A simple login backend</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Upload-file"><span class="nav-number">7.</span> <span class="nav-text">Upload file</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Before-all"><span class="nav-number">1.</span> <span class="nav-text">Before all</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Create-a-static-server"><span class="nav-number">2.</span> <span class="nav-text">Create a static server</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Allow-large-Request"><span class="nav-number">3.</span> <span class="nav-text">Allow large Request</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Allow-CORS"><span class="nav-number">4.</span> <span class="nav-text">Allow CORS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Handle-OPTIONS"><span class="nav-number">5.</span> <span class="nav-text">Handle OPTIONS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Start-A-SQLite-instance-before-all"><span class="nav-number">6.</span> <span class="nav-text">Start A SQLite instance before all</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#A-simple-login-backend"><span class="nav-number">7.</span> <span class="nav-text">A simple login backend</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Upload-file"><span class="nav-number">8.</span> <span class="nav-text">Upload file</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -130,7 +130,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,7 +171,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.5dbwat4.top/arch/express-commonly-used-code-snippets.html">
+    <link itemprop="mainEntityOfPage" href="https://blog.5dbwat4.top/arch/expressjs-commonly-used-code-snippets.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -199,9 +199,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-07-09 09:40:26 / 修改时间：17:52:31" itemprop="dateCreated datePublished" datetime="2024-07-09T09:40:26+08:00">2024-07-09</time>
+      <time title="创建时间：2024-07-09 09:40:26" itemprop="dateCreated datePublished" datetime="2024-07-09T09:40:26+08:00">2024-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-08-01 14:50:49" itemprop="dateModified" datetime="2024-08-01T14:50:49+08:00">2024-08-01</time>
     </span>
 
   
@@ -221,13 +227,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="Before-all"><a href="#Before-all" class="headerlink" title="Before all"></a>Before all</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&quot;express&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line"><span class="keyword">const</span> port = <span class="number">3000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> httpServer = http.<span class="title function_">createServer</span>(app);</span><br><span class="line"></span><br><span class="line">httpServer.<span class="title function_">listen</span>(port, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> ifaces = <span class="built_in">require</span>(<span class="string">&quot;os&quot;</span>).<span class="title function_">networkInterfaces</span>();</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Listening&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="title class_">Object</span>.<span class="title function_">keys</span>(ifaces).<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">dev</span>) &#123;</span><br><span class="line">    ifaces[dev].<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">details</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (details.<span class="property">family</span> === <span class="string">&quot;IPv4&quot;</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;  &quot;</span> + <span class="string">&quot;http://&quot;</span> + details.<span class="property">address</span> + <span class="string">&quot;:&quot;</span> + port);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+        <p>通过复制粘贴实现一个基于<code>express.js</code>的后端</p>
+<span id="more"></span>
+
+
+
+<h1 id="Before-all"><a href="#Before-all" class="headerlink" title="Before all"></a>Before all</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">&quot;express&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">express</span>();</span><br><span class="line"><span class="keyword">const</span> port = <span class="number">3000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> httpServer = http.<span class="title function_">createServer</span>(app);</span><br><span class="line"></span><br><span class="line">httpServer.<span class="title function_">listen</span>(port, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> ifaces = <span class="built_in">require</span>(<span class="string">&quot;os&quot;</span>).<span class="title function_">networkInterfaces</span>();</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Listening&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="title class_">Object</span>.<span class="title function_">keys</span>(ifaces).<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">dev</span>) &#123;</span><br><span class="line">    ifaces[dev].<span class="title function_">forEach</span>(<span class="keyword">function</span> (<span class="params">details</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (details.<span class="property">family</span> === <span class="string">&quot;IPv4&quot;</span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;  &quot;</span> + <span class="string">&quot;http://&quot;</span> + details.<span class="property">address</span> + <span class="string">&quot;:&quot;</span> + port);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <h1 id="Create-a-static-server"><a href="#Create-a-static-server" class="headerlink" title="Create a static server"></a>Create a static server</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/path&#x27;</span>,[express.<span class="title function_">static</span>(<span class="string">&quot;path/to&quot;</span>)])</span><br></pre></td></tr></table></figure>
 
 <h1 id="Allow-large-Request"><a href="#Allow-large-Request" class="headerlink" title="Allow large Request"></a>Allow large Request</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> bodyParser = <span class="built_in">require</span>(<span class="string">&quot;body-parser&quot;</span>);</span><br><span class="line">app.<span class="title function_">use</span>(bodyParser.<span class="title function_">json</span>(&#123; <span class="attr">limit</span>: <span class="string">&quot;50mb&quot;</span> &#125;));</span><br><span class="line">app.<span class="title function_">use</span>(bodyParser.<span class="title function_">urlencoded</span>(&#123; <span class="attr">limit</span>: <span class="string">&quot;50mb&quot;</span>, <span class="attr">extended</span>: <span class="literal">true</span> &#125;));</span><br></pre></td></tr></table></figure>
 
 <h1 id="Allow-CORS"><a href="#Allow-CORS" class="headerlink" title="Allow CORS"></a>Allow CORS</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">use</span>(<span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">  res.<span class="title function_">set</span>(&#123;</span><br><span class="line">    <span class="string">&quot;Access-Control-Allow-Origin&quot;</span>: req.<span class="title function_">get</span>(<span class="string">&quot;Origin&quot;</span>),</span><br><span class="line">    <span class="string">&quot;Access-Control-Allow-Credentials&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;Access-Control-Allow-Methods&quot;</span>: <span class="string">&quot;POST,GET,OPTIONS&quot;</span>,</span><br><span class="line">    <span class="string">&quot;Access-Control-Allow-Headers&quot;</span>: <span class="string">&quot;content-type&quot;</span>,</span><br><span class="line">    <span class="title class_">Vary</span>: <span class="string">&quot;Origin&quot;</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="title function_">next</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="Handle-OPTIONS"><a href="#Handle-OPTIONS" class="headerlink" title="Handle OPTIONS"></a>Handle <code>OPTIONS</code></h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">use</span>(<span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line"> <span class="keyword">if</span> (req.<span class="property">method</span> === <span class="string">&quot;OPTIONS&quot;</span>) &#123;</span><br><span class="line">   <span class="keyword">return</span> res.<span class="title function_">sendStatus</span>(<span class="number">200</span>);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="title function_">next</span>();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <h1 id="Start-A-SQLite-instance-before-all"><a href="#Start-A-SQLite-instance-before-all" class="headerlink" title="Start A SQLite instance before all"></a>Start A SQLite instance before all</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sqlite = <span class="built_in">require</span>(<span class="string">&quot;sqlite&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> sqlite3 = <span class="built_in">require</span>(<span class="string">&quot;sqlite3&quot;</span>);</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@type</span> sqlite.Database&lt;sqlite3.Database, sqlite3.Statement&gt;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">let</span> db;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> openedFlag = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">use</span>(<span class="keyword">async</span> (_, $, next) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (!openedFlag) &#123;</span><br><span class="line">    db = <span class="keyword">await</span> sqlite.<span class="title function_">open</span>(&#123;</span><br><span class="line">      <span class="attr">filename</span>: <span class="string">&quot;./data/data.db&quot;</span>,</span><br><span class="line">      <span class="attr">driver</span>: sqlite3.<span class="property">cached</span>.<span class="property">Database</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">    openedFlag = <span class="literal">true</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">next</span>();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -248,14 +261,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/arch/start-a-minecraft-server-without-gui.html" rel="prev" title="无GUI启动Minecraft服务器的历程">
-                  <i class="fa fa-chevron-left"></i> 无GUI启动Minecraft服务器的历程
+                <a href="/arch/start-a-minecraft-server-without-gui.html" rel="prev" title="用阿里云无GUI启动Minecraft服务器">
+                  <i class="fa fa-chevron-left"></i> 用阿里云无GUI启动Minecraft服务器
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/arch/personal-blog-collection.html" rel="next" title="个人博客站收集">
-                  个人博客站收集 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
