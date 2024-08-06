@@ -24,13 +24,13 @@
 
     <meta name="description" content="当我们想单机玩Minecraft时，如何启动Minecraft并不是一件难事，因为官方启动器以及各种HMCL之类的启动器会帮助我们完成诸如安装java、下载minecraft的jar文件、管理各种模组之类的工作。 同理，联机也不是什么难事。启动Minecraft后，我们可以轻松“向局域网开放”，然后内网穿透一下便可。 这就导致，必须有一个人先启动游戏，其他人才能联机。 我们现在希望每个玩家可以平等">
 <meta property="og:type" content="article">
-<meta property="og:title" content="无GUI启动Minecraft服务器的历程">
+<meta property="og:title" content="用阿里云无GUI启动Minecraft服务器">
 <meta property="og:url" content="https://blog.5dbwat4.top/arch/start-a-minecraft-server-without-gui.html">
 <meta property="og:site_name" content="5dbwat4&#39;s Blog">
 <meta property="og:description" content="当我们想单机玩Minecraft时，如何启动Minecraft并不是一件难事，因为官方启动器以及各种HMCL之类的启动器会帮助我们完成诸如安装java、下载minecraft的jar文件、管理各种模组之类的工作。 同理，联机也不是什么难事。启动Minecraft后，我们可以轻松“向局域网开放”，然后内网穿透一下便可。 这就导致，必须有一个人先启动游戏，其他人才能联机。 我们现在希望每个玩家可以平等">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-06T07:19:18.000Z">
-<meta property="article:modified_time" content="2024-07-07T04:11:40.907Z">
+<meta property="article:modified_time" content="2024-08-01T06:49:32.339Z">
 <meta property="article:author" content="5dbwat4">
 <meta name="twitter:card" content="summary">
 
@@ -39,10 +39,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.5dbwat4.top/arch/start-a-minecraft-server-without-gui.html","path":"arch/start-a-minecraft-server-without-gui.html","title":"无GUI启动Minecraft服务器的历程"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.5dbwat4.top/arch/start-a-minecraft-server-without-gui.html","path":"arch/start-a-minecraft-server-without-gui.html","title":"用阿里云无GUI启动Minecraft服务器"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>无GUI启动Minecraft服务器的历程 | 5dbwat4's Blog</title>
+<title>用阿里云无GUI启动Minecraft服务器 | 5dbwat4's Blog</title>
   
 
 
@@ -130,7 +130,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -184,12 +184,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="无GUI启动Minecraft服务器的历程 | 5dbwat4's Blog">
+      <meta itemprop="name" content="用阿里云无GUI启动Minecraft服务器 | 5dbwat4's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          无GUI启动Minecraft服务器的历程
+          用阿里云无GUI启动Minecraft服务器
         </h1>
 
         <div class="post-meta-container">
@@ -207,7 +207,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-07-07 12:11:40" itemprop="dateModified" datetime="2024-07-07T12:11:40+08:00">2024-07-07</time>
+      <time title="修改时间：2024-08-01 14:49:32" itemprop="dateModified" datetime="2024-08-01T14:49:32+08:00">2024-08-01</time>
     </span>
 
   
@@ -232,6 +232,8 @@
 <p>这就导致，必须有一个人先启动游戏，其他人才能联机。</p>
 <p>我们现在希望每个玩家可以平等地加入游戏，希望让游戏服务器持久化运行。当然，网上有专门做Minecraft服务器租用的平台。</p>
 <p>但是，我们希望把服务器放在阿里云上。</p>
+<span id="more"></span>
+
 <h2 id="一键式部署"><a href="#一键式部署" class="headerlink" title="一键式部署"></a>一键式部署</h2><p><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/1454890">3分钟部署 我的世界（Minecraft） 联机服务-阿里云开发者社区 (aliyun.com)</a></p>
 <p>真的是一键部署，相当方便。问题是，启动服务器后发现配置游戏参数时忘了<code>online-mode=false</code>，改不了了，怎么办</p>
 <h3 id="探索该服务的文件结构"><a href="#探索该服务的文件结构" class="headerlink" title="探索该服务的文件结构"></a>探索该服务的文件结构</h3><p>远程连接到ecs。</p>
@@ -287,12 +289,12 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/arch/me-and-my-Thost.html" rel="prev" title="我与thost">
-                  <i class="fa fa-chevron-left"></i> 我与thost
+                <a href="/arch/answer-of-english-paper-2.html" rel="prev" title="《学英语报》报纸答案(4/4)">
+                  <i class="fa fa-chevron-left"></i> 《学英语报》报纸答案(4/4)
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/arch/express-commonly-used-code-snippets.html" rel="next" title="express.js常用代码块">
+                <a href="/arch/expressjs-commonly-used-code-snippets.html" rel="next" title="express.js常用代码块">
                   express.js常用代码块 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
