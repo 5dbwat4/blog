@@ -22,23 +22,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.5dbwat4.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="5dbwat4&#39;s Blog">
-<meta property="og:url" content="https://blog.5dbwat4.top/archives/2024/11/">
+    <meta name="description" content="省流：几乎完全没有鉴权。 这篇文章与Introduction to ZJU Webcam是上下篇。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智云课堂直播流鉴权分析">
+<meta property="og:url" content="https://blog.5dbwat4.top/arch/2024-11-classroom-zju-leaking-cmc-location.html">
 <meta property="og:site_name" content="5dbwat4&#39;s Blog">
+<meta property="og:description" content="省流：几乎完全没有鉴权。 这篇文章与Introduction to ZJU Webcam是上下篇。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-01T00:44:41.000Z">
+<meta property="article:modified_time" content="2024-11-01T09:12:16.042Z">
 <meta property="article:author" content="5dbwat4">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://blog.5dbwat4.top/archives/2024/11/">
+<link rel="canonical" href="https://blog.5dbwat4.top/arch/2024-11-classroom-zju-leaking-cmc-location.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/2024/11/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.5dbwat4.top/arch/2024-11-classroom-zju-leaking-cmc-location.html","path":"arch/2024-11-classroom-zju-leaking-cmc-location.html","title":"智云课堂直播流鉴权分析"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | 5dbwat4's Blog</title>
+<title>智云课堂直播流鉴权分析 | 5dbwat4's Blog</title>
   
 
 
@@ -74,7 +78,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">5dbwat4's Blog</h1>
+      <p class="site-title">5dbwat4's Blog</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -100,7 +104,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -113,6 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B4%E6%92%AD%E6%B5%81%E5%9C%B0%E5%9D%80%E8%8E%B7%E5%8F%96%E9%9C%80%E9%89%B4%E6%9D%83"><span class="nav-number">1.</span> <span class="nav-text">直播流地址获取需鉴权</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B4%E6%92%AD%E6%B5%81%E5%9C%B0%E5%9D%80%E4%B8%8E%E6%95%99%E5%AE%A4%E5%AF%B9%E5%BA%94%EF%BC%8C%E4%B8%8D%E4%B8%8E%E8%AF%BE%E7%A8%8B%E5%AF%B9%E5%BA%94"><span class="nav-number">2.</span> <span class="nav-text">直播流地址与教室对应，不与课程对应</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B4%E6%92%AD%E6%B5%81%E5%9C%B0%E5%9D%80%E6%B2%A1%E6%9C%89%E4%BB%BB%E4%BD%95%E9%89%B4%E6%9D%83"><span class="nav-number">3.</span> <span class="nav-text">直播流地址没有任何鉴权</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%86%E4%BC%9A%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%90%8E%E6%9E%9C"><span class="nav-number">4.</span> <span class="nav-text">将会带来的后果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E6%95%B0%E6%8D%AE%E6%9B%B4%E5%8A%A0%E5%AE%89%E5%85%A8"><span class="nav-number">5.</span> <span class="nav-text">如何使数据更加安全</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -155,69 +160,118 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 26 篇日志。 继续努力。</span>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.5dbwat4.top/arch/2024-11-classroom-zju-leaking-cmc-location.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="5dbwat4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="5dbwat4's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="智云课堂直播流鉴权分析 | 5dbwat4's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          智云课堂直播流鉴权分析
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2024</span>
+
+      <time title="创建时间：2024-11-01 08:44:41 / 修改时间：17:12:16" itemprop="dateCreated datePublished" datetime="2024-11-01T08:44:41+08:00">2024-11-01</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>省流：几乎完全没有鉴权。</p>
+<p>这篇文章与<a href="/arch/2024-11-zju-webcam">Introduction to ZJU Webcam</a>是上下篇。</p>
+<span id="more"></span>
+
+<p>只有一部分教室的直播流可以用此方法获取和使用。</p>
+<h1 id="直播流地址获取需鉴权"><a href="#直播流地址获取需鉴权" class="headerlink" title="直播流地址获取需鉴权"></a>直播流地址获取需鉴权</h1><p>为了获取直播流地址，你需要在登陆状态下获取<code>https://classroom.zju.edu.cn/courseapi/v3/portal-home-setting/get-sub-info?course_id=&lt;COURSE_ID&gt;&amp;sub_id=&lt;SUB_ID&gt;</code>。</p>
+<p>智云课堂不会检验<code>&lt;COURSE_ID&gt;</code>与<code>&lt;SUB_ID&gt;</code>是否匹配，在<code>&lt;response&gt;.data.live_url.output</code>中记录了对应课堂的直播流。</p>
+<p>通过<code>&lt;response&gt;.data.room_name</code>和<code>&lt;response&gt;.data.live_url.output.m3u8</code>可以拿到教室名-M3U8地址的对应。</p>
+<h1 id="直播流地址与教室对应，不与课程对应"><a href="#直播流地址与教室对应，不与课程对应" class="headerlink" title="直播流地址与教室对应，不与课程对应"></a>直播流地址与教室对应，不与课程对应</h1><p>换言之，不同的课程，只要教室相同，直播流地址就相同。也就是说，这个地址可以“一次获取，终身使用”。</p>
+<h1 id="直播流地址没有任何鉴权"><a href="#直播流地址没有任何鉴权" class="headerlink" title="直播流地址没有任何鉴权"></a>直播流地址没有任何鉴权</h1><p>直播流最后的<code>authid=xxxxx</code>参数没有任何作用，删除不影响获取。</p>
+<p>直播流获取时不检查Cookie，不检查Token，不需要登陆状态。</p>
+<p>直播流<code>Cors-Allow-Origin</code>是<code>*</code>，并且对于一切情况均为<code>*</code>，不会要求访问Origin必须为智云课堂网址。</p>
+<p>直播流可以在校外访问，不要求访问者来自内网。</p>
+<h1 id="将会带来的后果"><a href="#将会带来的后果" class="headerlink" title="将会带来的后果"></a>将会带来的后果</h1><p>数据泄露：任何人都可以访问直播流，这可能导致敏感信息泄露，比如学生的个人信息、课堂内容等。</p>
+<p>服务滥用：可能会导致服务被滥用，比如被用于商业用途或其他非教育目的，这可能会违反服务条款，导致法律问题。</p>
+<p>带宽和资源消耗：如果直播流可以被任何人访问，可能会导致大量的非授权访问，增加服务器的带宽和资源消耗，影响服务的稳定性和性能。</p>
+<h1 id="如何使数据更加安全"><a href="#如何使数据更加安全" class="headerlink" title="如何使数据更加安全"></a>如何使数据更加安全</h1><p>配置Referer防盗链：配置Referer黑名单或白名单后，CDN会根据名单对播放请求中携带的Referer字段进行识别，允许或拒绝播放请求。</p>
+<p>配置Key防盗链：观众使用租户提供的带加密串的鉴权播放地址向CDN请求直播播放，CDN会根据请求地址中携带的鉴权信息进行检验，只有通过校验的请求才会被允许。</p>
+<p>IP黑白名单鉴权：配置IP黑名单或白名单后，CDN会根据名单对推流请求者的IP进行识别和过滤，允许或拒绝推流请求。</p>
+<p>限制跨域资源共享（CORS）：不要将Access-Control-Allow-Origin设置为*，而是应该设置为具体的域名或者使用更精细的控制策略。如果需要支持跨域请求，确保Access-Control-Allow-Credentials设置为true，并且正确处理Cookie。</p>
+<p>限制直播流访问：直播流可以在校内访问，不要求访问者来自内网。可以通过配置域名的访问控制列表（ACL）来限制只有特定IP地址或网络可以访问直播流。</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-11-01T08:44:41+08:00"
-              content="2024-11-01">
-          11-01
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/arch/2024-11-classroom-zju-leaking-cmc-location.html" itemprop="url">
-            <span itemprop="name">智云课堂直播流鉴权分析</span>
-          </a>
-      </div>
+    <footer class="post-footer">
 
-      
-    </header>
-  </article>
+        
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-11-01T08:35:26+08:00"
-              content="2024-11-01">
-          11-01
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/arch/2024-11-zju-webcam.html" itemprop="url">
-            <span itemprop="name">Introduction to ZJU Webcam</span>
-          </a>
-      </div>
-
-      
-    </header>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/arch/2024-11-zju-webcam.html" rel="prev" title="Introduction to ZJU Webcam">
+                  <i class="fa fa-chevron-left"></i> Introduction to ZJU Webcam
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
 
 
-    </div>
-  </div>
-  
-  
-  
+</div>
+
+
+
+
+
 
 </div>
   </main>
