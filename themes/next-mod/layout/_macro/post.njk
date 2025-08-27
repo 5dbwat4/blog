@@ -157,7 +157,7 @@
     </footer>
   </article>
 
-  
+  {%- if not is_index %}
   <div class="email-container">
   <p class="ec-lead">Subscribe to the latest post with email. It's free.</p>
     <script async data-uid="a5b6dbb174" src="https://5dbwat4.kit.com/a5b6dbb174/index.js"></script>
@@ -169,6 +169,8 @@
   </style>
   <p class="ec-ref">Newsletter powered by <a href="https://kit.com">ConvertKit</a></p>
   </div>
+
+  {%- endif %}
 
 
 </div>
