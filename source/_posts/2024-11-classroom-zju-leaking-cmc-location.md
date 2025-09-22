@@ -6,6 +6,8 @@ published: true
 ---
 省流：几乎完全没有鉴权。
 
+这篇文章与[Introduction to ZJU Webcam](/arch/2024-11-zju-webcam)是上下篇。
+
 <!-- more -->
 
 只有一部分教室的直播流可以用此方法获取和使用。

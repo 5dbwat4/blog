@@ -6,3 +6,8 @@ type: about
 我是5dbwat4。
 现就读于浙江大学竺可桢学院。
 
+--------
+
+友链：
+
+[forliage的blog](https://forliage.github.io/)

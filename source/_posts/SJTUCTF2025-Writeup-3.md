@@ -2,7 +2,6 @@
 title: SJTUCTF2025 Writeup (3)
 date: 2025-04-07T01:45:14+08:00
 tags:
-  - CTF
 mathjax: true
 ---
 

@@ -2,7 +2,6 @@
 title: OpenHarmonyCTF 2025 Writeup
 date: 2025-06-13T01:54:14+08:00
 tags:
-  - CTF
 ---
 哥们菜是真菜
 
