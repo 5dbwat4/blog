@@ -53,6 +53,8 @@ git clone --recurse-submodules https://github.com/SunWeb3Sec/DeFiHackLabs.git
 
 对于文档中的这个内容，我个人看起来是自带的Windows Terminal（cmd或PowerShell）都可以使用，不一定非要用Git BASH或WSL。如果你要用Windows Terminal，要注意的是：**文档中的一些语法，例如`export`之类，在powershell/cmd中有其它的写法**，可以询问LLM。
 
+UPDATE: 眼瞎了，文档说的是Foundryup不支持cmd/powershell，而不是Foundry本身不支持。
+
 # 开起来一个Private Network
 
 使用`anvil`命令开起来一个本地的以太坊网络。
