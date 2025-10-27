@@ -64,3 +64,27 @@ ssh -L 8888:localhost:8888 hpc101
 意思是说将本地的8888端口和远程的8888端口绑定。
 
 然后就可以在本地浏览器访问jupyter notebook了
+
+# Build everything into `~/.local`
+
+没有sudo权限，装软件只能装在用户目录下，通常是`~/.local`，所以在编译安装软件时，指定`./configure --prefix=$HOME/.local`即可
+
+然后要处理环境变量的问题：
+
+```shell
+export PATH=$HOME/.local/bin:$PATH
+export LD_LIBRARY_PATH=$HOME/.local/lib:$LD_LIBRARY_PATH
+export PKG_CONFIG_PATH=$HOME/.local/lib/pkgconfig:$PKG_CONFIG_PATH
+export C_INCLUDE_PATH=$HOME/.local/include:$C_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH=$HOME/.local/include:$CPLUS_INCLUDE_PATH
+```
+
+（主要是前两个，其它的反正我没遇到过相关导致的报错）
+
+完成之后还要`ldconfig`一下，不然`ld`会炸。
+
+```shell
+mkdir -p $HOME/.local/lib/ldconfig
+echo "$HOME/.local/lib" > $HOME/.local/lib/ld.so.conf
+ldconfig -f $HOME/.local/lib/ld.so.conf
+```
