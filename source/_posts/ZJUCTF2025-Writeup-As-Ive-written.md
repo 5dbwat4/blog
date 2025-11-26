@@ -110,7 +110,12 @@ router.get('/', async (req, res) => {
 
 那么，*What if the attacker redirected their own page 18 times and then redirected it to the victim’s website?*
 
+<div style="max-width:400px;margin:auto;">
+
 ![](ERR.png)
+
+</div>
+
 
 答案是：puppeteer会进入catch分支，返回"Don't hack my puppeteer."，那么我们就实现了正误输入的差分。
 
