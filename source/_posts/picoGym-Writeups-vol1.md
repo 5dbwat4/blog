@@ -2,6 +2,7 @@
 title: picoGym Writeups (1)
 date: 2025-11-01T19:03:44+08:00
 tags:
+  - CTF Writeup
 ---
 
 [picoGym](https://play.picoctf.org/practice/) 难度偏易，适合给人提供信心。

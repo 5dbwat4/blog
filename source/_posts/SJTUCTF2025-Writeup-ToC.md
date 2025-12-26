@@ -2,6 +2,7 @@
 title: SJTUCTF2025 Writeup (ToC)
 date: 2025-04-08T11:28:40+08:00
 tags:
+  - CTF Writeup
 ---
 
 <table>

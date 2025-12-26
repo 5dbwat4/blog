@@ -2,6 +2,7 @@
 title: N1CTF Junior 2025 2/2 Writeup
 date: 2025-09-14T22:27:22+08:00
 tags:
+  - CTF Writeup
 ---
 
 打了 N1CTF Junior 2025 2/2 Writeup 主要看的是Web（别的也不会啊）

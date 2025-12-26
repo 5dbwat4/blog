@@ -2,6 +2,7 @@
 title: CSACTF2025 Writeup
 date: 2025-08-30T18:30:59+08:00
 tags:
+  - CTF Writeup
 ---
 
 鉴定为纯失

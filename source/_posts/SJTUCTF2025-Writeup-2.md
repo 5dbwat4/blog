@@ -2,6 +2,7 @@
 title: SJTUCTF2025 Writeup (2)
 date: 2025-04-07T01:21:48+08:00
 tags:
+  - CTF Writeup
 mathjax: true
 ---
 观前提示：本Writeup含有过量Deepseek The Flag的内容，建议谨慎观看

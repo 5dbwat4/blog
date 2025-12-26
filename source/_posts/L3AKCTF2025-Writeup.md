@@ -2,6 +2,7 @@
 title: L3akCTF2025 Writeup & 复盘
 date: 2025-07-28T16:25:41+08:00
 tags:
+  - CTF Writeup
 ---
 拿到468分，取得493名的垫底成绩。
 

@@ -2,6 +2,7 @@
 title: "[ZJUCTF2025] 命题人Writeup: As I've written"
 date: 2025-11-25T17:26:11+08:00
 tags:
+  - CTF Writeup
 ---
 
 我最喜欢的一道题。

@@ -2,7 +2,7 @@
 title: SEKAICTF 2025 Writeup —— Notebook Viewer
 date: 2025-08-20T01:12:52+08:00
 tags:
-  - CTF
+  - CTF Writeup
 ---
 
 和AAA的佬们一起参赛（然后睡过了晚起一个小时）

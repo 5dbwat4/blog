@@ -2,6 +2,7 @@
 title: ZJUCTF 2024 Writeup
 date: 2024-10-22T20:25:46+08:00
 tags:
+  - CTF Writeup
 ---
 
 参加了ZJUCTF 2024，这是Writeup.

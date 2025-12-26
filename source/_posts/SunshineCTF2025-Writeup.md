@@ -2,6 +2,7 @@
 title: SunshineCTF2025 Writeup
 date: 2025-09-27T22:29:49+08:00
 tags:
+  - CTF Writeup
 ---
 
 感觉比较新手友好
