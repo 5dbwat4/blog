@@ -5,7 +5,7 @@
 # Site
 title: 5dbwat4's Blog
 subtitle: ''
-description: ''
+description: 'Struggling to make it.'
 keywords:
 author: 5dbwat4
 language: zh-CN
@@ -100,7 +100,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: next-mod
+theme: cactus-mod
 
 
 # Deployment
