@@ -1,0 +1,69 @@
+---
+title: "login-ZJU: A light-weight server-side library helping your application login to ZJU services"
+date: 2026-02-12T11:50:26+08:00
+tags:
+---
+
+你是否经常遇到这样的问题：写了一个选课插件/查分插件/学在浙大quiz插件/下载智云课堂视频工具，但是缺了一个登录态？或者你想写一个能放在服务器上的自动化脚本来完成一些重复性的操作？当一切就绪，想要把工具发送至CC98论坛时，却苦于无法用合适的语言来向用户说明如何获取登录cookie？——打开开发者工具，找到Network/Storage，然后再定位到cookie，复制cookie字符串，最后粘贴到工具里，这个过程可能太繁琐了。
+
+用户更喜欢一个简单的登录界面，输入账号密码，点击登录，就能完成登录过程，并且工具能够自动处理cookie管理和登录状态维护。——当然，能够写出前述插件的人，完全有能力再写一个登录界面出来，但是，千万个人就要写出千万个登录流程，尤其是zjuam的登录流程，在GitHub的各种库里面有不下十种不同的实现方式。
+
+所以，你或许会更想要一个库，它能帮你实现登录流程，你只需要调用它，而无需处理从账号密码到cookie的整个流程。——这就是login-ZJU的目标。
+
+[![](https://opengraph.githubassets.com/token/5dbwat4/login-ZJU)](https://github.com/5dbwat4/login-ZJU)
+
+
+[![npm version](https://badge.fury.io/js/login-zju.svg)](https://badge.fury.io/js/login-zju) [![Downloads](https://img.shields.io/npm/dt/login-zju.svg)](https://www.npmjs.com/package/login-zju) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+求一求star：[5dbwat4](https://github.com/5dbwat4/login-ZJU)
+
+----------------
+
+与该项目有关的文章：
+- [浙大表单鉴权流程（2025/11版）](/arch/2025-11-form-zju-edu-cn-auth/)
+
+----------------
+
+## Install
+```sh
+npm install login-zju
+```
+
+
+## Usage
+
+```js
+import { ZJUAM,ServiceName } from 'login-zju';
+
+const am = new ZJUAM("username", "password");
+const service = new ServiceName(am); // e.g. new ZDBK(am);
+
+// then you can literally fetch the URL and login-ZJU will handle 
+// login or cookie management for you.
+
+const res = await service.fetch("/some/api",{
+    method: "GET",
+}); // Just like the native fetch API
+
+console.log(await res.text());
+```
+
+This is mainly used for server-side applications.
+
+### Current Implemented Services
+
+
+| Title    | Domain               | Class name  | 上次成功时间 | Note |
+| -------- | -------------------- | ----------- | ----------- | ---- |
+| 统一身份认证 | zjuam.zju.edu.cn | `ZJUAM` | 2025/11/14 | - |
+| 智云课堂 | classroom.zju.edu.cn | `CLASSROOM` | 2025/11/14 | -    |
+| 本科教学管理信息服务平台     |    zdbk.zju.edu.cn   |   `ZDBK`  | 2025/12/24  |   -   |
+| 表单填报助手 | form.zju.edu.cn | `FORM` | 2025/11/14 | -  |
+| 学在浙大（zju_web） | courses.zju.edu.cn | `COURSES` | 2025/11/14 |    |
+| 校园卡二维码页面 | yqfkgl.zju.edu.cn | `YQFKGL` | 2025/11/26 |  用于`https://yqfkgl.zju.edu.cn/_web/_customizes/ykt/index3.jsp`，不排除其它path下会有其它登录流程  |
+| 浙大先生开放平台 | open.zju.edu.cn | `OPEN` | 2025/11/26 | 其实就是HiAgent  |
+| CC98 | cc98.org | `CC98` | 2025/12/6 | 传参为账号密码 |
+| ETA 三全育人平台 | eta.zju.edu.cn | `ETA` | 2025/12/24 | 不会自动处理加解密，可以使用`eta.encode`和`eta.decode` |
+
+鉴于部分服务可能会变更登录流程，如果发现登录流程炸了，可以[提交一个issue](https://github.com/5dbwat4/login-ZJU/issues)或者[发布一个PR](https://github.com/5dbwat4/login-ZJU/pulls)。
+

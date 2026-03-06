@@ -4,6 +4,12 @@ date: 2024-11-01T16:44:41+08:00
 tags:
 published: true
 ---
+
+> Update @ 2025-11
+> 
+> 智云课堂更新了鉴权，目前该文章已不再适用
+
+
 省流：几乎完全没有鉴权。
 
 这篇文章与[Introduction to ZJU Webcam](/arch/2024-11-zju-webcam)是上下篇。
